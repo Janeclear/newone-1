@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .pg_header{
+            position: fixed;
+            height: 48px;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #2459a2;
+            line-height: 48px;
+        }
+        .pg_header .logo{
+            margin: 0 auto;
+            float: left;
+            width: 200px;
+            text-align: center;
+            line-height: 48px;
+            font-size: 28px;
+            color: white;
+        }
+        .pg_dl{
+            left: 400px;
+            display: inline-block;
+            padding: 0 40px;
+            color: white;
+        }
+        .pg_header .pg_dl:hover{
+            background-color: #2459fb;
+            cursor: pointer;
+        }
+        .left{
+            margin-top: 20px;
+            width: 400px;
+            display: inline-block;
+            float: left;
+        }
+        .pg_body{
+            margin-top: 50px;
+            font-size: 18px;
+            display: inline-block;
+            width: 200px;
+        }
+        .pg_body .menu{
+            width: 800px;
+            padding: 15px;
+            float: left;
+            font-weight: bold;
+        }
+        input[type="text"]{
+            width: 200px;
+            height: 25px;
+            border-radius: 6px;
+        }
+        input[type="password"]{
+            width: 200px;
+            height: 25px;
+            border-radius: 6px;
+        }
+        input[type="button"]{
+            background-color: #555555;
+               border: none;
+            color: white;
+            padding: 12px 29px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 17px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        input[type="submit"]{
+            background-color: #555555;
+               border: none;
+            color: white;
+            padding: 12px 29px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 17px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .kong{
+            margin-top: -54px;
+            margin-left: 200px;
+            float:left;
+            padding: 15px;
+        }
+        .img{
+            width: 50px;
+            height: 40px;
+        }
+        .can{
+            width: 1220px;
+            height: 40px;
+            line-height: 40px;
+            margin: 0 auto;
+            text-align: center;
+            display: inline-block;
+        }
+        .tian{
+            color: red;
+            float: right;
+            font-size: 12px;
+            margin-right: -120px;
+            margin-top: -25px;
+        }
+    </style>
+</head>
+<body style="background-image: url(../static/images/backblue03.jpg); background-size:100%;">
+</body>
+<body>
+<div class = "pg_header">
+        <a class = "logo">CareerHelper</a>
+        <a class="pg_dl" id="i77">Login</a>
+</div>
+<br><br>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="page-header">
+				<h1>
+					Career Helper <small>At your service</small>
+				</h1>
+			</div>
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-3 column">
+			<img src="../static/images/0001.jpg" />
+            <li><a href="/index/">Home</a></li>
+		</div>
+		<div class="col-md-6 column">
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+					 <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+					<div class="col-sm-10">
+						<input type="email" class="form-control" id="inputEmail3" />
+					</div>
+				</div>
+				<div class="form-group">
+					 <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" id="inputPassword3" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							 <label><input type="checkbox" />Remember me</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						 <button type="submit" class="btn btn-default">Sign in</button>
+					</div>
+				</div>
+                <div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						 <button type="submit" class="btn btn-default">Register</button>
+                         <br/>
+                         <br/>
+                         <li><a href="/index/">Home</a></li>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-3 column">
+		</div>
+	</div>
+</div>
+</body>
+</html>
