@@ -1,111 +1,82 @@
 {% extends 'base.html' %}
 {% block title %}个人信息{% endblock %}
+{%load static  %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'CSS/selfinfo.css' %}">
+{% endblock %}
 {% block content %}
+
     <h3 align="center" class="text-center">个人信息填写</h3>
-    <table width=68% style="border: 1px;margin: 0 auto;"  >
+    <form class="form-selfinfo"  action="/selfinfo/" method="post" >
+    {% csrf_token %}
+    <div class="form-group">
+        {{ selfinfo_form.username.label_tag }}
+        {{ selfinfo_form.username }}
+    </div>
+    <div class="form-group">
+        {{ selfinfo_form.real_name.label_tag }}
+        {{ selfinfo_form.real_name }}
+    </div>
 
-    <tr>
-        <td style="background: salmon">姓名</td>
-        <td><label>
-            <input type="text" style="width:40%">
-        </label></td>
-        <td>性别</td>
-        <td><label>
-            <select style="width: 40%">
-                <option>男</option>
-                <option>女</option>
-            </select>
-        </label></td>
-    </tr>
-    <tr>
-        <td>手机号码</td>
-        <td><label>
-            <input type="tel" style="width:40%">
-        </label></td>
-        <td>电子邮箱</td>
-        <td><label>
-            <input type="email" style="width:40%">
-        </label></td>
-    </tr>
+    <div class="form-group">
+        {{ selfinfo_form.sex.label_tag }}
+        {{ selfinfo_form.sex }}
+    </div>
 
-    <tr>
-        <td>教育程度</td>
-        <td><label>
-            <select style="width: 40%">
-                <option>大专</option>
-                <option>本科</option>
-                <option>硕士</option>
-                <option>博士</option>
-            </select>
-        </label></td>
-        <td>专业</td>
-        <td><label>
-            <input style="width: 40%; " type="text">
-        </label></td>
-    </tr>
+    <div class="form-group">
+        {{ selfinfo_form.phone_number.label_tag }}
+        {{ selfinfo_form.phone_number}}
+    </div>
+    <div class="form-group">
+        {{ selfinfo_form.email.label_tag }}
+        {{ selfinfo_form.email}}
+    </div>
+    <div class="form-group">
+        {{ selfinfo_form.education.label_tag }}
+        {{ selfinfo_form.education}}
+    </div>
+    <div class="form-group">
+        {{ selfinfo_form.major.label_tag }}
+        {{ selfinfo_form.major}}
+    </div>
+    <div class="form-group">
+        {{ selfinfo_form.age.label_tag }}
+        {{ selfinfo_form.age}}
+    </div>
+    <div class="form-group">
+        {{ selfinfo_form.expected_salary.label_tag }}
+        {{ selfinfo_form.expected_salary}}
+    </div>
+    <div class="form-group">
+        {{ selfinfo_form.home_address.label_tag }}
+        {{ selfinfo_form.home_address}}
+    </div>
+    <div class="form-group">
+        {{ selfinfo_form.certificate_or_skills.label_tag }}
+        {{ selfinfo_form.certificate_or_skills}}
+    </div>
+    <div class="form-group">
+        {{ selfinfo_form.professional_history.label_tag }}
+        {{ selfinfo_form.professional_history}}
+    </div>
+    <div class="form-group">
+        {{ selfinfo_form.experience.label_tag }}
+        {{ selfinfo_form.experience}}
+    </div>
+    <div class="form-group">
+        {{ selfinfo_form.hobby.label_tag }}
+        {{ selfinfo_form.hobby}}
+    </div>
+    <div class="form-group">
+        {{ selfinfo_form.selfintroduction.label_tag }}
+        {{ selfinfo_form.selfintroduction}}
+    </div>
+    <div class="form-group">
+        <p align= "left"  colspan="4" >感谢您的信任！</p>
+    </div>
+    <br>
+    <button type="reset" class="btn btn-default pull-left">重置</button>
+    <button type="submit" class="btn btn-primary pull-right">提交</button>
 
-    <tr>
-        <td>工作城市</td>
-        <td><label>
-            <input style="width: 40%; " type="text">
-        </label></td>
-        <td>期望月薪</td>
-        <td><label>
-            <select style="width: 40%">
-                <option>3000-5000</option>
-                <option>5000-8000</option>
-                <option>8000-10000</option>
-                <option>10000以上</option>
-            </select>
-        </label></td>
-    </tr>
-    <tr>
-        <td>家庭住址</td>
-        <td colspan="3"><label>
-            <input type="text" style="width: 95%; " >
-        </label></td>
-    </tr>
-    <tr>
-        <td>自我介绍</td>
-        <td colspan="3"><label>
-            <input type="text" style="width: 95%; " >
-        </label></td>
-    </tr>
-
-    <tr>
-        <td>特长/技能/证书</td>
-        <td colspan="3"><label>
-            <input type="text" style="width: 95%; " >
-        </label></td>
-    </tr>
-    <tr>
-        <td>职业经历</td>
-        <td colspan="3"><label>
-            <input type="text" style="width: 95%; " >
-        </label></td>
-    </tr>
-    <tr>
-        <td>实践经历</td>
-        <td colspan="3"><label>
-            <input type="text" style="width: 95%; " >
-        </label></td>
-    </tr>
-
-    <tr>
-        <td>兴趣爱好</td>
-        <td colspan="3"><label>
-            <input type="text" style="width: 95%; " >
-        </label></td>
-    </tr>
-    <tr>
-        <td align="left"  colspan="4" >感谢您的信任！</td>
-    </tr>
-
-    <tr>
-        <td align="center" colspan="4" >
-            <input type="submit" value="提交">
-            <input type="reset" value="退出">
-        </td>
-    </tr>
-</table>
+</form>
 {% endblock %}

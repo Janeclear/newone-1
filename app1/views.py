@@ -1,9 +1,8 @@
 from django.shortcuts import render
-
 #create your views here.
 
 from app1 import models
-from newone.form import RegisterForm, UserForm
+from newone.form import RegisterForm, UserForm, SelfinfoForm
 from .models import Test
 from django.shortcuts import render, redirect
 from django import forms
@@ -113,12 +112,82 @@ def login_a(request):
     return render(request,'form.html')
 
 def selfinfo(request):
-    pass
-    return render(request, 'selfinfo.html')
+    if request.method == "POST":
+        selfinfo_form = SelfinfoForm(request.POST)
+        if selfinfo_form.is_valid():  # 获取数据
+            username = selfinfo_form.cleaned_data['username']
+            real_name = selfinfo_form.cleaned_data['real_name']
+            sex = selfinfo_form.cleaned_data['sex']
+            phone_number = selfinfo_form.cleaned_data['phone_number']
+            email = selfinfo_form.cleaned_data['email']
+            education = selfinfo_form.cleaned_data['education']
+            major = selfinfo_form.cleaned_data['major']
+            age = selfinfo_form.cleaned_data['age']
+            expected_salary = selfinfo_form.cleaned_data['expected_salary']
+            home_address = selfinfo_form.cleaned_data['home_address']
+            certificate_or_skills = selfinfo_form.cleaned_data['certificate_or_skills']
+            professional_history = selfinfo_form.cleaned_data['professional_history']
+            experience = selfinfo_form.cleaned_data['experience']
+            hobby = selfinfo_form.cleaned_data['hobby']
+            selfintroduction = selfinfo_form.cleaned_data['selfintroduction']
+            # 当一切都OK的情况下，创建新信息
+            new_selfinfo = models.Selfinfo.objects.create()
+            new_selfinfo.name = username
+            new_selfinfo.real_name = real_name
+            new_selfinfo.sex = sex
+            new_selfinfo.phone_number = phone_number
+            new_selfinfo.email = email
+            new_selfinfo.education = education
+            new_selfinfo.major = major
+            new_selfinfo.age = age
+            new_selfinfo.expected_salary = expected_salary
+            new_selfinfo.home_address = home_address
+            new_selfinfo.certificate_or_skills = certificate_or_skills
+            new_selfinfo.professional_history = professional_history
+            new_selfinfo.experience = experience
+            new_selfinfo.hobby = hobby
+            new_selfinfo.selfintroduction = selfintroduction
+            new_selfinfo.save()
+
+            return redirect('/selfinfo_done/')  # 自动跳转到登录页面
+    selfinfo_form = SelfinfoForm()
+    return render(request, 'selfinfo.html', locals())
+
+selfinfo_form=SelfinfoForm()
+data={}
+
+#dict_selfinfo = {}
+def selfinfo_done(request):
+    #selfinfo_formlist = models.Selfinfo.objects.all()
+    selfinfo_form = models.Selfinfo.objects.get(name='Jane')
+    data = {
+        "selfinfo_form": selfinfo_form
+    }
+    return render(request, 'selfinfo_done.html', context=data)  # locals() dict_selfinfo
+    #if request.method == "POST":
+        #selfinfo_formlist = models.Test.objects.all()
+        # models.Selfinfo.objects.filter(real_name='王敬莹')
+        # selfinfo_form=RegisterForm
+
+        # 实例化一个图书对象，使用book.id查询该书籍数据
+        # 建立空字典存储booklist
+        # 存储book书名
+
+        #selfinfo_form = models.Test.objects.get(name='Jane')
+        #dict_selfinfo['name'] = selfinfo_form.name
+        #dict_selfinfo['email'] = selfinfo_form.eamil
+
+    #pass
+    #return render(request, 'selfinfo_done.html',)#  locals())
 
 def careerhelper(request):
     pass
     return render(request, 'careerhelper.html')
+
 def Introduction(request):
     pass
     return render(request, 'Introduction.html')
+
+def plan(request):
+    pass
+    return render(request, 'plan.html')

@@ -16,8 +16,8 @@ Including another URLconf
 from django.conf.urls import *
 from django.contrib import admin
 
-from app1.views import login, selfinfo, logout, careerhelper, Introduction
-from app1.views import login02
+from app1.views import login, selfinfo, logout, careerhelper, Introduction, selfinfo_done
+from app1.views import login02, plan
 from app1.views import register01
 from app1.views import base
 from app1.views import index
@@ -43,8 +43,10 @@ urlpatterns = (
 
     url(r'^testdb$', testdb.testdb),
     url(r'^selfinfo/', selfinfo),
+    url(r'^selfinfo_done/', selfinfo_done),
     url(r'^careerhelper/', careerhelper),
     url(r'^Introduction/', Introduction),
+    url(r'^plan/', plan),
     # index
     # logout
     #url(r'^register/', register),
