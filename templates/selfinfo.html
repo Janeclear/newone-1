@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{% static 'CSS/selfinfo.css' %}">
 {% endblock %}
 {% block content %}
-
+    <p><a class="btn" href="/selfinfo_done/">我已填写，查看已填写信息</a></p>
     <h3 align="center" class="text-center">个人信息填写</h3>
     <form class="form-selfinfo"  action="/selfinfo/" method="post" >
     {% csrf_token %}

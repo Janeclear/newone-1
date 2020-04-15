@@ -15,10 +15,11 @@ def index(request): #request是什么？
     return render(request,'index.html')#返回结果给浏览器
 #改名
 def login(request):
+    global user
     if request.session.get('is_login', None):
         return redirect("/index/")
     if request.method == "POST":
-        login_form = UserForm(request.POST)
+        login_form = UserForm(request.POST) #加上global
         message = "请检查填写的内容！"
         if login_form.is_valid():
             username = login_form.cleaned_data['username']
@@ -160,7 +161,8 @@ data={}
 def selfinfo_done(request):
     #selfinfo_formlist = models.Selfinfo.objects.all()
     #这里首先想办法得到用户名name，不知道能不能用base页面那个{{ request.session.user_name }}
-    selfinfo_form = models.Selfinfo.objects.get(name='Jane')
+
+    selfinfo_form = models.Selfinfo.objects.get(name=user.name)
     data = {
         "selfinfo_form": selfinfo_form
     }
