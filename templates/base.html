@@ -36,17 +36,18 @@
             width: 200px;
             text-align: center;
             line-height: 48px;
-            font-size: 28px;
+            font-size: 26px;
             color: white;
         }
         .pg_dl{
-            left: 400px;
+            left: 300px;
             display: inline-block;
-            padding: 0 40px;
+            padding: 0 20px;
             color: white;
+            width: 300px;
         }
         .pg_header .pg_dl:hover{
-            background-color: #2459fb;
+            background-color: lightskyblue;
             cursor: pointer;
         }
         .left{
@@ -156,18 +157,18 @@
               {% if request.session.is_login %}
                   <ul>
                   <li><a class = "logo">CareerHelper</a></li>
-                  <li><a class="words" href="#">当前在线：{{ request.session.user_name }}</a></li>
-                  <li><a class="pg_dl" id="i77" href="/logout/">Logout</a></li>
-                  <li><a class="pg_dl" id="i77"  href="/selfinfo/">User center</a></li>
-                  <li><a class="pg_dl" id="i77" href="/careerhelper/">Careerhelper</a></li>
-                  <li><a class="pg_dl" id="i77" href="/plan/">Abilitygrowth</a></li>
+                  <li><a class="words" href="#">你好：{{ request.session.user_name }}</a></li>
+                  <li><a class="pg_dl" id="i77"  href="/selfinfo/">信息完善</a></li>
+                  <li><a class="pg_dl" id="i77" href="/careerhelper/">职业助手</a></li>
+                  <li><a class="pg_dl" id="i77" href="/plan/">成长计划</a></li>
+                  <li><a class="pg_dl" id="i77" href="/logout/">退出登录</a></li>
                   </ul>
               {% else %}
                   <ul>
                   <li><a class = "logo">CareerHelper</a></li>
-                  <li><a class="pg_dl" id="i77" href="/Introduction/">Introduction</a></li>
-                  <li><a class="pg_dl" id="i77" href="/login/">Login</a></li>
-                  <li><a class="pg_dl" id="i77" href="/register01/">Register</a></li>
+                  <li><a class="pg_dl" id="i77" href="/Introduction/">平台简介</a></li>
+                  <li><a class="pg_dl" id="i77" href="/login/">登录</a></li>
+                  <li><a class="pg_dl" id="i77" href="/register01/">注册</a></li>
                   </ul>
               {% endif %}
 
@@ -177,7 +178,8 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/login/">Login</a></li>
             <li><a href="/register01/">Register</a></li>
-          </ul>        -->
+                 -->
+          </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>

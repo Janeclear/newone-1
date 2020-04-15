@@ -159,6 +159,7 @@ data={}
 #dict_selfinfo = {}
 def selfinfo_done(request):
     #selfinfo_formlist = models.Selfinfo.objects.all()
+    #这里首先想办法得到用户名name，不知道能不能用base页面那个{{ request.session.user_name }}
     selfinfo_form = models.Selfinfo.objects.get(name='Jane')
     data = {
         "selfinfo_form": selfinfo_form

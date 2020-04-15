@@ -30,25 +30,25 @@
 .pg_header .logo{
             margin: 0 auto;
             float: left;
-            width: 200px;
             text-align: center;
             line-height: 48px;
-            font-size: 28px;
+            font-size: 24px;
             color: white;
         }
 .pg_header .words{
             margin: 0 auto;
             float: left;
-            width: 200px;
+            width: 160px;
             text-align: center;
             line-height: 48px;
-            font-size: 18px;
+            font-size: 16px;
             color: white;
         }
 .pg_dl{
-            left: 400px;
+            left: 300px;
             display: inline-block;
-            padding: 0 40px;
+            padding: 0 20px;
+            width: 60px;
             color: white;
         }
 
