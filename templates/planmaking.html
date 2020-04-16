@@ -13,13 +13,9 @@
                 <th style="border:2px solid #0094ff">学历</th>
                 <th style="border:2px solid #0094ff">专业</th>
                 <th style="border:2px solid #0094ff">年龄</th>
-                <th style="border:2px solid #0094ff">期望月薪</th>
-                <th style="border:2px solid #0094ff">家庭住址</th>
                 <th style="border:2px solid #0094ff">证书技能</th>
                 <th style="border:2px solid #0094ff">职业经历</th>
-                <th style="border:2px solid #0094ff">实践经历</th>
                 <th style="border:2px solid #0094ff">兴趣爱好</th>
-                <th style="border:2px solid #0094ff">自我介绍</th>
                 <th style="border:2px solid #0094ff">所选职业</th>
             </tr>
         </thead>
@@ -32,17 +28,14 @@
                 <td style="border:2px solid #0094ff">{{ selfinfo_form.education }}</td>
                 <td style="border:2px solid #0094ff">{{ selfinfo_form.major }}</td>
                 <td style="border:2px solid #0094ff">{{ selfinfo_form.age }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.expected_salary }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.home_address }}</td>
                 <td style="border:2px solid #0094ff">{{ selfinfo_form.certificate_or_skills }}</td>
                 <td style="border:2px solid #0094ff">{{ selfinfo_form.professional_history }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.experience }}</td>
                 <td style="border:2px solid #0094ff">{{ selfinfo_form.hobby }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.selfintroduction}}</td>
-                <td style="border:2px solid #0094ff"><button type="submit" class="button1">职业</button></td>
+                <td style="border:2px solid #0094ff">{{ selfinfo_form.jobchosen}}</td>
             </tr>
         {% endfor %}
 
+        
         </tbody>
     </table>
 

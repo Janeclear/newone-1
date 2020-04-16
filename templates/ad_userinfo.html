@@ -2,7 +2,7 @@
 
 {% block content %}
 		<div align="center" class="yihang">
-            <p>表格内容：用户的个人信息，推荐的职业（用户自己同意选定的），专家点击某条内容后开始制定计划</p>
+            <p>用户信息</p>
 		</div>
     <table align="center" style="font-size: 16px;border:2px solid #0094ff" >
         <thead>
@@ -39,12 +39,14 @@
                 <td style="border:2px solid #0094ff">{{ selfinfo_form.experience }}</td>
                 <td style="border:2px solid #0094ff">{{ selfinfo_form.hobby }}</td>
                 <td style="border:2px solid #0094ff">{{ selfinfo_form.selfintroduction}}</td>
-                <td style="border:2px solid #0094ff"><button type="submit" class="button1">职业</button></td>
+                <td style="border:2px solid #0094ff">{{ selfinfo_form.jobchosen}}</td>
             </tr>
         {% endfor %}
-
-
         </tbody>
     </table>
+    <br>
+    <br>
+    <li style="margin: 60px"><a style="color: white; font-size: 16px" href="/planmaking/">发布职业成长计划</a></li>
+
 
 {% endblock %}
