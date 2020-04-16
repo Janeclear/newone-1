@@ -64,6 +64,7 @@ class Selfinfo(models.Model):
     experience = models.CharField(max_length=150, default=0,  blank=True)
     hobby = models.CharField(max_length=150, default=0, blank=True)
     selfintroduction = models.CharField(max_length=150, default=0,  blank=True)
+    jobchosen = models.CharField(max_length=150, default='尚未确定', blank=True)
 
     def __str__(self):
         return self.name

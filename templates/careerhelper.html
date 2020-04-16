@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {%load static  %}
+<link rel="stylesheet" href="{% static 'CSS/selfinfo.css' %}">
 {% block title %}职业助手{% endblock %}
 
 {% block content %}
@@ -74,10 +75,17 @@
                                                 </div>
                                         </td>
                                     </tr>
-
-
                                 </tbody>
                             </table>
+
+                            <form class="form-selfinfo"  action="/careerhelper/" method="post" >
+                            {% csrf_token %}
+                            <h2>职业选择 <small>根据推荐结果或自己的意愿进行填写</small> </h2>
+                            <input type=“text" name="a" >职业名称</input>
+                            <br>
+                            <button type="reset" class="btn btn-default pull-left">重置</button>
+                            <button type="submit" class="btn btn-primary pull-right">提交</button>
+                            </form>
                         </div>
                 </div>
     </div>

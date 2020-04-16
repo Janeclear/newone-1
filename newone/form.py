@@ -47,6 +47,7 @@ class SelfinfoForm(forms.Form):
     experience = forms.CharField(label="实践经历", max_length=256, widget=forms.TextInput(attrs={'class': 'form-controla'}))
     hobby = forms.CharField(label="兴趣爱好", max_length=256, widget=forms.TextInput(attrs={'class': 'form-controla'}))
     selfintroduction = forms.CharField(label="自我介绍", max_length=256, widget=forms.TextInput(attrs={'class': 'form-controla'}))
+    jobchosen = forms.CharField(label='目标职业', max_length=150, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 class UserForm(forms.Form):
     username = forms.CharField(label="用户名", max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
