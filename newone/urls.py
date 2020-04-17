@@ -16,9 +16,9 @@ Including another URLconf
 from django.conf.urls import *
 from django.contrib import admin
 
-from app1.views import login
+from app1.views import login, plan_done
 from app1.views import login02, plan
-from app1.views import register01, selfinfo, logout, careerhelper
+from app1.views import register01, selfinfo, logout, careerhelper, elogout
 from app1.views import base, Introduction, selfinfo_done, career
 from app1.views import index, elogin, ad_userinfo, planmaking
 from app1.views import login_a
@@ -37,6 +37,7 @@ urlpatterns = (
     url(r'^login02/', login02),
     url(r'^login_a', login_a),
     url(r'^logout', logout),
+    url(r'^elogout', elogout),
 
     url(r'^register01/', register01),
     url(r'^base/', base),
@@ -47,6 +48,7 @@ urlpatterns = (
     url(r'^careerhelper/', careerhelper),
     url(r'^Introduction/', Introduction),
     url(r'^plan/', plan),
+    url(r'^plan_done', plan_done),
     url(r'^career/', career),
     url(r'^elogin/', elogin),
     url(r'^ad_userinfo/', ad_userinfo),

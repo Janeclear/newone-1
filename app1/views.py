@@ -65,6 +65,12 @@ def logout(request):
     # del request.session['user_name']
     return redirect("/index/")
 
+def elogout(request):
+    if not request.session.get('is_login', None):
+        return redirect("/elogin/")
+    request.session.flush()
+    return redirect("/elogin/")
+
 
 def base(request):
     pass
@@ -92,14 +98,15 @@ def planmaking(request):
             plan2 = plan_form.cleaned_data['plan2']
             plan3 = plan_form.cleaned_data['plan3']
 
-            new_plan = models.Plan.objects.create()
-            new_plan.name = username
-            new_plan.plan1 = plan1
-            new_plan.plan2 = plan2
-            new_plan.plan3 = plan3
-            new_plan.save()
+            #new_plan = models.Plan.objects.create()
+            #new_plan.name = username
+            #new_plan.plan1 = plan1
+            #new_plan.plan2 = plan2
+            #new_plan.plan3 = plan3
+            #new_plan.save()
+            #已经new过了只需要update就行
+            models.Plan.objects.filter(name=username).update(plan1=plan1,plan2=plan2,plan3=plan3)
 
-            #models.Plan.objects.filter(name=username).update(plan1=plan1,plan2=plan2,plan3=plan3)
             message = "提交成功！"
 
             return redirect('/ad_userinfo/')
@@ -127,7 +134,7 @@ def selfinfo(request):
             experience = selfinfo_form.cleaned_data['experience']
             hobby = selfinfo_form.cleaned_data['hobby']
             selfintroduction = selfinfo_form.cleaned_data['selfintroduction']
-            jobchosen =selfinfo_form.cleaned_data['jobchosen']
+
             # 当一切都OK的情况下，创建新信息
             new_selfinfo = models.Selfinfo.objects.create()
             new_selfinfo.name = username
@@ -145,7 +152,6 @@ def selfinfo(request):
             new_selfinfo.experience = experience
             new_selfinfo.hobby = hobby
             new_selfinfo.selfintroduction = selfintroduction
-            new_selfinfo.jobchosen = jobchosen
             new_selfinfo.save()
 
             return redirect('/selfinfo_done/')  # 自动跳转到登录页面
@@ -221,6 +227,9 @@ def register01(request):
                 new_user.email = email
                 new_user.sex = sex
                 new_user.save()
+                new_plan = models.Plan.objects.create()
+                new_plan.name= username
+                new_plan.save()
 
                 return redirect('/login/')  # 自动跳转到登录页面
     register_form = RegisterForm()
@@ -279,3 +288,7 @@ def plan(request):
         "plan_form": plan_form
     }
     return render(request, 'plan.html',context=data_p)
+
+def plan_done(request):
+    pass
+    return render(request, 'plan_done.html')

@@ -69,7 +69,6 @@ class Selfinfo(models.Model):
     def __str__(self):
         return self.name
 
-
 class Plan(models.Model):
     name = models.CharField(max_length=50,default=0,unique=True,blank=True)
     plan1 = models.CharField(max_length=256, default='专家尚未制定，请耐心等待', blank=True)
