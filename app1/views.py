@@ -136,23 +136,24 @@ def selfinfo(request):
             selfintroduction = selfinfo_form.cleaned_data['selfintroduction']
 
             # 当一切都OK的情况下，创建新信息
-            new_selfinfo = models.Selfinfo.objects.create()
-            new_selfinfo.name = username
-            new_selfinfo.real_name = real_name
-            new_selfinfo.sex = sex
-            new_selfinfo.phone_number = phone_number
-            new_selfinfo.email = email
-            new_selfinfo.education = education
-            new_selfinfo.major = major
-            new_selfinfo.age = age
-            new_selfinfo.expected_salary = expected_salary
-            new_selfinfo.home_address = home_address
-            new_selfinfo.certificate_or_skills = certificate_or_skills
-            new_selfinfo.professional_history = professional_history
-            new_selfinfo.experience = experience
-            new_selfinfo.hobby = hobby
-            new_selfinfo.selfintroduction = selfintroduction
-            new_selfinfo.save()
+            #new_selfinfo = models.Selfinfo.objects.create()
+            #new_selfinfo.name = username
+            #new_selfinfo.real_name = real_name
+            #new_selfinfo.sex = sex
+            #new_selfinfo.phone_number = phone_number
+            #new_selfinfo.email = email
+            #new_selfinfo.education = education
+            #new_selfinfo.major = major
+            #new_selfinfo.age = age
+            #new_selfinfo.expected_salary = expected_salary
+            #new_selfinfo.home_address = home_address
+            #new_selfinfo.certificate_or_skills = certificate_or_skills
+            #new_selfinfo.professional_history = professional_history
+            #new_selfinfo.experience = experience
+            #new_selfinfo.hobby = hobby
+            #new_selfinfo.selfintroduction = selfintroduction
+            #new_selfinfo.save()
+            models.Selfinfo.objects.filter(name=username).update(real_name=real_name, sex =sex, phone_number= phone_number, email=email,education=education,major=major,expected_salary=expected_salary,home_address=home_address,certificate_or_skills=certificate_or_skills,professional_history=professional_history,experience=experience,hobby=hobby,selfintroduction=selfintroduction)
 
             return redirect('/selfinfo_done/')  # 自动跳转到登录页面
     selfinfo_form = SelfinfoForm()
@@ -230,6 +231,13 @@ def register01(request):
                 new_plan = models.Plan.objects.create()
                 new_plan.name= username
                 new_plan.save()
+
+                new_selfinfo = models.Selfinfo.objects.create()
+                new_selfinfo.name = username
+                new_selfinfo.sex = sex
+                new_selfinfo.email = email
+                new_selfinfo.save()
+
 
                 return redirect('/login/')  # 自动跳转到登录页面
     register_form = RegisterForm()
