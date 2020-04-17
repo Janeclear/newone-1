@@ -1,42 +1,45 @@
 {% extends 'ebase.html' %}
-
+{%load static  %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'CSS/planmaking.css' %}">
+{% endblock %}
 {% block content %}
-		<div align="center" class="yihang">
-            <p>表格内容：制定计划</p>
-		</div>
-    <table align="center" style="font-size: 16px;border:2px solid #0094ff" >
-        <thead>
-            <tr>
-                <th style="border:2px solid #0094ff">序号</th>
-                <th style="border:2px solid #0094ff">用户名</th>
-                <th style="border:2px solid #0094ff">性别</th>
-                <th style="border:2px solid #0094ff">学历</th>
-                <th style="border:2px solid #0094ff">专业</th>
-                <th style="border:2px solid #0094ff">年龄</th>
-                <th style="border:2px solid #0094ff">证书技能</th>
-                <th style="border:2px solid #0094ff">职业经历</th>
-                <th style="border:2px solid #0094ff">兴趣爱好</th>
-                <th style="border:2px solid #0094ff">所选职业</th>
-            </tr>
-        </thead>
-        <tbody >
-        {% for selfinfo_form in selfinfo_formlist %}
-            <tr>
-                <td style="border:2px solid #0094ff">{{ forloop.counter }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.name }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.sex }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.education }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.major }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.age }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.certificate_or_skills }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.professional_history }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.hobby }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.jobchosen}}</td>
-            </tr>
-        {% endfor %}
+    <div style="text-align: center">
+        <h3 style="text-align: center">为用户制定职业成长计划</h3>
+    </div>
+    <form style="margin: 30px 500px" class="form-plan"  action="/planmaking/" method="post" >
+    {% if message %}
+        <div class="alert alert-warning">{{ message }}</div>
+    {% endif %}
 
-        
-        </tbody>
-    </table>
+    {% csrf_token %}
+    <div class="form-group">
+        {{ plan_form.username.label_tag }}
+        {{ plan_form.username }}
+    </div>
+    <div class="form-group">
+        {{ plan_form.plan1.label_tag }}
+        {{ plan_form.plan1 }}
+    </div>
+
+    <div class="form-group">
+        {{ plan_form.plan2.label_tag }}
+        {{ plan_form.plan2 }}
+    </div>
+
+    <div class="form-group">
+        {{ plan_form.plan3.label_tag }}
+        {{ plan_form.plan3}}
+    </div>
+
+    <br>
+    <button type="reset" class="btn btn-default pull-left">重置</button>
+    <button type="submit" class="btn btn-primary pull-right">提交</button>
+
+</form>
+
+    <br>
+    <li style="margin: 60px"><a style="color: white; font-size: 16px" href="/ad_userinfo/">返回查看用户信息</a></li>
+
 
 {% endblock %}

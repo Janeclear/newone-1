@@ -72,7 +72,11 @@
         {{ selfinfo_form.selfintroduction}}
     </div>
     <div class="form-group">
-        <p align= "left"  colspan="4" >感谢您的信任！</p>
+        {{ selfinfo_form.jobchosen.label_tag }}
+        {{ selfinfo_form.jobchosen}}
+    </div>
+    <div class="form-group">
+        <p align= "left"  colspan="4" >请认真填写</p>
     </div>
     <br>
     <button type="reset" class="btn btn-default pull-left">重置</button>

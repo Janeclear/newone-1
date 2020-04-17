@@ -1,45 +1,45 @@
 {% extends 'ebase.html' %}
 
 {% block content %}
-		<div align="center" class="yihang">
-            <p>用户信息</p>
-		</div>
-    <table align="center" style="font-size: 16px;border:2px solid #0094ff" >
+    <div align="center" >
+        <h3 align="center">用户个人信息表</h3>
+    </div>
+    <table align="center" style="font-size: 16px;border:2px solid white" >
         <thead>
             <tr>
-                <th style="border:2px solid #0094ff">序号</th>
-                <th style="border:2px solid #0094ff">用户名</th>
-                <th style="border:2px solid #0094ff">性别</th>
-                <th style="border:2px solid #0094ff">学历</th>
-                <th style="border:2px solid #0094ff">专业</th>
-                <th style="border:2px solid #0094ff">年龄</th>
-                <th style="border:2px solid #0094ff">期望月薪</th>
-                <th style="border:2px solid #0094ff">家庭住址</th>
-                <th style="border:2px solid #0094ff">证书技能</th>
-                <th style="border:2px solid #0094ff">职业经历</th>
-                <th style="border:2px solid #0094ff">实践经历</th>
-                <th style="border:2px solid #0094ff">兴趣爱好</th>
-                <th style="border:2px solid #0094ff">自我介绍</th>
-                <th style="border:2px solid #0094ff">所选职业</th>
+                <th style="border:2px solid white">序号</th>
+                <th style="border:2px solid white">用户名</th>
+                <th style="border:2px solid white">性别</th>
+                <th style="border:2px solid white">学历</th>
+                <th style="border:2px solid white">专业</th>
+                <th style="border:2px solid white">年龄</th>
+                <th style="border:2px solid white">期望月薪</th>
+                <th style="border:2px solid white">家庭住址</th>
+                <th style="border:2px solid white">证书技能</th>
+                <th style="border:2px solid white">职业经历</th>
+                <th style="border:2px solid white">实践经历</th>
+                <th style="border:2px solid white">兴趣爱好</th>
+                <th style="border:2px solid white">自我介绍</th>
+                <th style="border:2px solid white">所选职业</th>
             </tr>
         </thead>
         <tbody >
         {% for selfinfo_form in selfinfo_formlist %}
             <tr>
-                <td style="border:2px solid #0094ff">{{ forloop.counter }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.name }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.sex }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.education }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.major }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.age }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.expected_salary }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.home_address }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.certificate_or_skills }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.professional_history }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.experience }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.hobby }}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.selfintroduction}}</td>
-                <td style="border:2px solid #0094ff">{{ selfinfo_form.jobchosen}}</td>
+                <td style="border:2px solid white">{{ forloop.counter }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.name }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.sex }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.education }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.major }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.age }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.expected_salary }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.home_address }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.certificate_or_skills }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.professional_history }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.experience }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.hobby }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.selfintroduction}}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.jobchosen}}</td>
             </tr>
         {% endfor %}
         </tbody>

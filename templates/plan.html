@@ -1,9 +1,55 @@
 {% extends 'base.html' %}
 {% block title %}成长计划{% endblock %}
+
+{%load static  %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'CSS/planmaking.css' %}">
+{% endblock %}
+
 {% block content %}
     <h2 align="center">你好,{{ request.session.user_name }}这是你的职业成长计划</h2>
-    <h4>目标1：</h4>
-    <p>考取初级会计资格证</p>
-    <p>当前进度</p>
-    <p>备注信息</p>
+    <form style="margin-left: 300px" class="form-plan" action="/plan/" method="get">
+
+            <div class="form-group">
+                <div class="yihang">
+                    <p>用户名：</p>
+                </div>
+                <div class="yihang">
+                    {{ plan_form.name }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="yihang">
+                    <p>计划1：</p>
+                </div>
+                <div class="yihang">
+                    {{ plan_form.plan1}}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="yihang">
+                    <p>计划2：</p>
+                </div>
+                <div class="yihang">
+                    {{ plan_form.plan2}}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="yihang">
+                    <p>计划3：</p>
+                </div>
+                <div class="yihang">
+                    {{ plan_form.plan3}}
+                </div>
+            </div>
+            <br>
+            <br>
+            <li><a style="color: white; font-size: 16px" href="//">记录计划执行进度</a></li>
+        </form>
+    <br>
+
 {% endblock %}
+

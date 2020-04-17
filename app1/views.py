@@ -1,23 +1,19 @@
 from django.shortcuts import render
 # create your views here.
 from app1 import models
-from newone.form import RegisterForm, UserForm, SelfinfoForm
+from newone.form import RegisterForm, UserForm, SelfinfoForm, PlanForm
 from .models import Test
 from django.shortcuts import render, redirect
 from django import forms
 from .static.forms import UserForm
 from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-
-
-
-
 # Create your views here.
+
 
 def index(request):  # request是什么？
     pass
     return render(request, 'index.html')  # 返回结果给浏览器
-
 
 # 改名
 def login(request):
@@ -36,6 +32,8 @@ def login(request):
                     request.session['is_login'] = True
                     request.session['user_id'] = user.id
                     request.session['user_name'] = user.name
+                    #及时创建计划，先只填名字，后来再改
+
                     return redirect("/index/")
                 else:
                     message = "密码不正确！"
@@ -85,6 +83,31 @@ def login_a(request):
     return render(request, 'form.html')
 
 
+def planmaking(request):
+    if request.method =="POST":
+        plan_form = PlanForm(request.POST)
+        if plan_form.is_valid():
+            username = plan_form.cleaned_data['username']
+            plan1 = plan_form.cleaned_data['plan1']
+            plan2 = plan_form.cleaned_data['plan2']
+            plan3 = plan_form.cleaned_data['plan3']
+
+            new_plan = models.Plan.objects.create()
+            new_plan.name = username
+            new_plan.plan1 = plan1
+            new_plan.plan2 = plan2
+            new_plan.plan3 = plan3
+            new_plan.save()
+
+            #models.Plan.objects.filter(name=username).update(plan1=plan1,plan2=plan2,plan3=plan3)
+            message = "提交成功！"
+
+            return redirect('/ad_userinfo/')
+
+    plan_form = PlanForm()
+    return render(request, 'planmaking.html', locals())
+
+
 def selfinfo(request):
     if request.method == "POST":
         selfinfo_form = SelfinfoForm(request.POST)
@@ -104,6 +127,7 @@ def selfinfo(request):
             experience = selfinfo_form.cleaned_data['experience']
             hobby = selfinfo_form.cleaned_data['hobby']
             selfintroduction = selfinfo_form.cleaned_data['selfintroduction']
+            jobchosen =selfinfo_form.cleaned_data['jobchosen']
             # 当一切都OK的情况下，创建新信息
             new_selfinfo = models.Selfinfo.objects.create()
             new_selfinfo.name = username
@@ -121,6 +145,7 @@ def selfinfo(request):
             new_selfinfo.experience = experience
             new_selfinfo.hobby = hobby
             new_selfinfo.selfintroduction = selfintroduction
+            new_selfinfo.jobchosen = jobchosen
             new_selfinfo.save()
 
             return redirect('/selfinfo_done/')  # 自动跳转到登录页面
@@ -131,8 +156,6 @@ def selfinfo(request):
 selfinfo_form = SelfinfoForm()
 data = {}
 
-
-# dict_selfinfo = {}
 def selfinfo_done(request):
     # selfinfo_formlist = models.Selfinfo.objects.all()
     # 这里首先想办法得到用户名name，不知道能不能用base页面那个{{ request.session.user_name }}
@@ -155,14 +178,13 @@ def selfinfo_done(request):
     # return render(request, 'selfinfo_done.html',)#  locals())
 
 #在你的函数前面加上csrf_exempt装饰器
-#例如:
 @csrf_exempt
 def careerhelper(request):
     if request.method == "POST":
         jobchosena = request.POST.get('a')
         models.Selfinfo.objects.filter(name=user.name).update(jobchosen=jobchosena)
 
-    selfinfo_form = SelfinfoForm()
+        return redirect('/plan/')
     return render(request, 'careerhelper.html',)
 
 
@@ -193,31 +215,26 @@ def register01(request):
                     return render(request, 'register01.html', locals())
 
                 # 当一切都OK的情况下，创建新用户
-
                 new_user = models.Test.objects.create()
                 new_user.name = username
                 new_user.password = password1
                 new_user.email = email
                 new_user.sex = sex
                 new_user.save()
+
                 return redirect('/login/')  # 自动跳转到登录页面
     register_form = RegisterForm()
     return render(request, 'register01.html', locals())
+
 
 def Introduction(request):
     pass
     return render(request, 'Introduction.html')
 
 
-def plan(request):
-    pass
-    return render(request, 'plan.html')
-
-
 def career(request):
     pass
     return render(request, 'career.html')
-
 
 
 def elogin(request):
@@ -246,9 +263,6 @@ def elogin(request):
     login_form = UserForm()
     return render(request, 'elogin.html', locals())
 
-def planmaking(request):
-    pass
-    return render(request, 'planmaking.html')
 
 def ad_userinfo(request):
     selfinfo_formlist = models.Selfinfo.objects.all()
@@ -256,3 +270,12 @@ def ad_userinfo(request):
         "selfinfo_formlist": selfinfo_formlist
     }
     return render(request, 'ad_userinfo.html',context=data)
+
+
+data_p={}
+def plan(request):
+    plan_form = models.Plan.objects.get(name= user.name)
+    data_p = {
+        "plan_form": plan_form
+    }
+    return render(request, 'plan.html',context=data_p)

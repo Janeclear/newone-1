@@ -37,7 +37,7 @@
             left: 300px;
             display: inline-block;
             padding: 0 20px;
-            width: 60px;
+            width: 120px;
             color: white;
         }
         .pg_header .pg_dl:hover{
@@ -63,7 +63,7 @@
             font-weight: bold;
         }
         input[type="text"]{
-            width: 200px;
+            width: 400px;
             height: 25px;
             border-radius: 6px;
         }
@@ -123,6 +123,10 @@
             margin-right: -120px;
             margin-top: -25px;
         }
+        .yihang{
+            display: inline-block;
+        }
+
     </style>
 </head>
 
@@ -132,6 +136,8 @@
 <div class = "pg_header">
         <a class = "logo">CareerHelper</a>
         <a class="pg_dl" id="i77">expert</a>
+        <li class="yihang"><a class="pg_dl" id="i77" href="/ad_userinfo/">查看信息</a></li>
+        <li class="yihang"><a class="pg_dl" id="i77" href="/planmaking/">制定计划</a></li>
 </div>
 <br><br>
 <div class="container">
@@ -145,6 +151,8 @@
 		</div>
 	</div>
 </div>
+
+
 {% block content %}
 {% endblock %}
 </body>
