@@ -1,22 +1,22 @@
 body {
   background-color: #eee;
 }
-.form-selfinfo {
+.form-plan_done {
   max-width: 600px;
   padding: 15px;
   margin: auto auto;
 }
-.form-selfinfo .form-control {
+.form-plan_done .form-control {
   position: relative;
   height: auto;
-  width: 200px;
+  width: 550px;
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
   padding: 5px;
   font-size: 16px;
 }
-.form-selfinfo .form-controla {
+.form-plan_done .form-controla {
   position: relative;
   width:550px;
   height: auto;
@@ -27,15 +27,15 @@ body {
   font-size: 16px;
 }
 
-.form-selfinfo .form-control:focus {
+.form-plan_done .form-control:focus {
   z-index: 2;
 }
-.form-selfinfo input[type="text"] {
+.form-plan_done input[type="text"] {
   margin-bottom: 3px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.form-selfinfo input[type="email"] {
+.form-plan_done input[type="email"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -45,4 +45,3 @@ body {
 .yihang{
   display:inline-block;
 }
-

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 # create your views here.
 from app1 import models
-from newone.form import RegisterForm, UserForm, SelfinfoForm, PlanForm
+from newone.form import RegisterForm, UserForm, SelfinfoForm, PlanForm, PlandoneForm
 from .models import Test
 from django.shortcuts import render, redirect
 from django import forms
@@ -231,12 +231,16 @@ def register01(request):
                 new_plan = models.Plan.objects.create()
                 new_plan.name= username
                 new_plan.save()
-
+                #注册时创建一条个人信息表数据，只保存下用户名字段，其他不填
                 new_selfinfo = models.Selfinfo.objects.create()
                 new_selfinfo.name = username
                 new_selfinfo.sex = sex
                 new_selfinfo.email = email
                 new_selfinfo.save()
+                #注册时也创建一条计划进度数据，只保存下用户名字段，其他不填
+                new_plandone = models.Plandone.objects.create()
+                new_plandone.name = username
+                new_plandone.save()
 
 
                 return redirect('/login/')  # 自动跳转到登录页面
@@ -283,8 +287,12 @@ def elogin(request):
 
 def ad_userinfo(request):
     selfinfo_formlist = models.Selfinfo.objects.all()
+    plan_formlist = models.Plan.objects.all()
+    plan_done_formlist = models.Plandone.objects.all()
     data = {
-        "selfinfo_formlist": selfinfo_formlist
+        "selfinfo_formlist": selfinfo_formlist,
+        "plan_formlist": plan_formlist,
+        "plan_done_formlist":plan_done_formlist
     }
     return render(request, 'ad_userinfo.html',context=data)
 
@@ -292,11 +300,31 @@ def ad_userinfo(request):
 data_p={}
 def plan(request):
     plan_form = models.Plan.objects.get(name= user.name)
+    plan_done_form = models.Plandone.objects.get(name= user.name)
     data_p = {
-        "plan_form": plan_form
+        "plan_form": plan_form,
+        "plan_done_form": plan_done_form
     }
-    return render(request, 'plan.html',context=data_p)
+    return render(request, 'plan.html', context=data_p)
 
 def plan_done(request):
-    pass
-    return render(request, 'plan_done.html')
+    if request.method == "POST":
+        #print('有POST')
+        plan_done_form = PlandoneForm(request.POST)
+        if plan_done_form.is_valid():
+            #print('有valid判断') 是因为没有设置username required = False
+            plan1_progress = plan_done_form.cleaned_data['plan1_progress']
+            plan1_learning_log = plan_done_form.cleaned_data['plan1_learning_log']
+            plan2_progress = plan_done_form.cleaned_data['plan2_progress']
+            plan2_learning_log = plan_done_form.cleaned_data['plan2_learning_log']
+            plan3_progress = plan_done_form.cleaned_data['plan3_progress']
+            plan3_learning_log = plan_done_form.cleaned_data['plan3_learning_log']
+            models.Plandone.objects.filter(name=user.name).update(plan1_progress=plan1_progress, plan1_learning_log= plan1_learning_log, plan2_progress=plan2_progress, plan2_learning_log=plan2_learning_log, plan3_progress=plan3_progress,plan3_learning_log=plan3_learning_log)
+            #print('有修改')
+            return redirect('/plan/')
+    plan_done_form = PlandoneForm()
+    plan_form = models.Plan.objects.get(name=user.name)
+    data = {
+        "plan_form": plan_form
+    }
+    return render(request,  'plan_done.html',locals())#context=data

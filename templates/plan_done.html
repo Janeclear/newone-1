@@ -3,10 +3,85 @@
 
 {%load static  %}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'CSS/planmaking.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/plan_done.css' %}">
 {% endblock %}
 
 {% block content %}
-    <h3>填写计划执行情况及学习日志（专家可以看到执行进度，个人日志是自己看到）</h3>
-    <h4>之后还可以增加求职资讯推送和问答，参考博客的做法</h4>
+    <div align="center">
+        <!--<h3>填写计划执行情况及学习日志（专家可以看到执行进度，个人日志是自己看到）</h3>
+        <h4>之后还可以增加求职资讯推送和问答，参考博客的做法</h4>-->
+        <h3>成长计划记录</h3>
+    </div>
+    <form class="form-plan_done"  action="/plan_done/" method="post">
+    {% csrf_token %}
+        <table>
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>计划</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>{{ plan_form.plan1 }}</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>{{ plan_form.plan2 }}</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>{{ plan_form.plan3 }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <br>
+        <div>
+            <div class="yihang">
+                <div class="form-group">
+                    {{ plan_done_form.plan1_progress.label_tag }}
+                    {{ plan_done_form.plan1_progress }}
+                </div>
+                <div class="form-group">
+                    {{ plan_done_form.plan1_learning_log.label_tag }}
+                    {{ plan_done_form.plan1_learning_log }}
+                </div>
+            </div>
+            <div class="yihang">
+                <div class="form-group">
+                    {{ plan_done_form.plan2_progress.label_tag }}
+                    {{ plan_done_form.plan2_progress }}
+                </div>
+                <div class="form-group">
+                    {{ plan_done_form.plan2_learning_log.label_tag }}
+                    {{ plan_done_form.plan2_learning_log }}
+                </div>
+            </div>
+            <div class="yihang">
+                <div class="form-group">
+                    {{ plan_done_form.plan3_progress.label_tag }}
+                    {{ plan_done_form.plan3_progress }}
+                </div>
+                <div class="form-group">
+                    {{ plan_done_form.plan3_learning_log.label_tag }}
+                    {{ plan_done_form.plan3_learning_log }}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <p align= "left"  colspan="4" >请认真填写</p>
+        </div>
+        <br>
+        <button type="reset" class="button1">重置</button>
+        <button type="submit" class="button1">提交</button>
+
+    </form>
+
+
+
 {% endblock %}

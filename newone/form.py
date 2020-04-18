@@ -55,8 +55,8 @@ class UserForm(forms.Form):
 
 class RegisterForm(forms.Form):
     gender = (
-        ('male', "男"),
-        ('female', "女"),
+        ('男', "男"),
+        ('女', "女"),
     )
     username = forms.CharField(label="用户名　", max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
     password1 = forms.CharField(label="密　码　", max_length=256, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
@@ -67,6 +67,23 @@ class RegisterForm(forms.Form):
 
 class PlanForm(forms.Form):
     username = forms.CharField(label="用户名　", max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    plan1 = forms.CharField(label="计划1", max_length=256,required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    plan2 = forms.CharField(label="计划2", max_length=256,required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    plan3 = forms.CharField(label="计划3", max_length=256,required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    plan1 = forms.CharField(label="计划1", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    plan2 = forms.CharField(label="计划2", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    plan3 = forms.CharField(label="计划3", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+
+class PlandoneForm(forms.Form):
+    percent = (
+        ('0', '未开始'),
+        ('25%', '完成了1/4'),
+        ('50%', '完成了一半'),
+        ('75%', '完成了3/4'),
+        ('100%', '全部完成'),
+    )
+    username = forms.CharField(label="用户名　", required=False, max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    plan1_progress = forms.ChoiceField(label="计划1执行进度",required=False, choices=percent)
+    plan1_learning_log = forms.CharField(label="计划1学习日志", max_length=1024, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))
+    plan2_progress = forms.ChoiceField(label="计划2执行进度", required=False, choices=percent)
+    plan2_learning_log = forms.CharField(label="计划2学习日志", max_length=1024, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))
+    plan3_progress = forms.ChoiceField(label="计划3执行进度", required=False, choices=percent)
+    plan3_learning_log = forms.CharField(label="计划3学习日志", max_length=1024, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))

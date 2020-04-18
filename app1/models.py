@@ -4,8 +4,8 @@ from django.db import models
 
 class Test(models.Model):
     gender = (
-        ('male', '男'),
-        ('female', '女'),
+        ('男', '男'),
+        ('女', '女'),
     )
     name = models.CharField(max_length=50,default=0,unique=True,blank=True)
     password = models.CharField(max_length=50,default=0,blank=True)
@@ -50,7 +50,7 @@ class Selfinfo(models.Model):
         ('女', '女'),
     )
     name = models.CharField(max_length=50, default=0, blank=True)
-    real_name = models.CharField(max_length=50, unique=True, default='未填写', blank=True)
+    real_name = models.CharField(max_length=50, default='未填写', blank=True)
     sex = models.CharField(max_length=32, choices=gender, default='男', blank=True)
     phone_number = models.CharField(max_length=11, default='未填写', blank=True)
     email = models.EmailField(default=0, blank=True)
@@ -74,6 +74,27 @@ class Plan(models.Model):
     plan1 = models.CharField(max_length=256, default='专家尚未制定，请耐心等待', blank=True)
     plan2 = models.CharField(max_length=256, default='专家尚未制定，请耐心等待', blank=True)
     plan3 = models.CharField(max_length=256, default='专家尚未制定，请耐心等待', blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Plandone(models.Model):
+    percent = (
+        ('0', '未开始'),
+        ('25%', '完成了1/4'),
+        ('50%', '完成了一半'),
+        ('75%', '完成了3/4'),
+        ('100%', '全部完成'),
+    )
+
+    name = models.CharField(max_length=50,default=0,unique=True,blank=True)
+    plan1_progress = models.CharField(max_length=50, choices=percent, default='未开始', blank=True)
+    plan1_learning_log = models.CharField(max_length=1024, default='暂无记录', blank=True)
+    plan2_progress = models.CharField(max_length=50, choices=percent, default='未开始', blank=True)
+    plan2_learning_log = models.CharField(max_length=1024, default='暂无记录', blank=True)
+    plan3_progress = models.CharField(max_length=50, choices=percent, default='未开始', blank=True)
+    plan3_learning_log = models.CharField(max_length=1024, default='暂无记录', blank=True)
 
     def __str__(self):
         return self.name

@@ -44,6 +44,60 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <div align="center" >
+        <h3 align="center">计划制定情况表</h3>
+    </div>
+
+    <table align="center" style="font-size: 20px">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>用户名</th>
+                <th>计划1</th>
+                <th>计划2</th>
+                <th>计划3</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for plan_form in plan_formlist %}
+            <tr style="border:2px solid white">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ plan_form.name }}</td>
+                <td>{{ plan_form.plan1 }}</td>
+                <td>{{ plan_form.plan2 }}</td>
+                <td>{{ plan_form.plan3 }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div align="center" >
+        <h3 align="center">用户计划实施情况表</h3>
+    </div>
+    <table align="center" style="font-size: 20px">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>用户名</th>
+                <th>计划1执行进度</th>
+                <th>计划2执行进度</th>
+                <th>计划3执行进度</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for plan_done_form in plan_done_formlist %}
+            <tr style="border:2px solid white">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ plan_done_form.name }}</td>
+                <td>{{ plan_done_form.plan1_progress }}</td>
+                <td>{{ plan_done_form.plan2_progress }}</td>
+                <td>{{ plan_done_form.plan3_progress }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
     <br>
     <br>
     <li style="margin: 60px"><a style="color: white; font-size: 16px" href="/planmaking/">发布职业成长计划</a></li>
