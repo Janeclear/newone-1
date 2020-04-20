@@ -1,9 +1,83 @@
 {% extends 'ebase.html' %}
 {%load static  %}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'CSS/planmaking.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/job.css' %}">
 {% endblock %}
 {% block content %}
     <!--在这里显示已有职业信息，下面设置新增职业按钮可以增加新的职业信息 -->
+    <div align="center">
+        <h3>职业信息列表</h3>
+    </div>
+    <hr align="center" width="80%">
+
+    <form class="form-job" action="/job/" method="post">
+    {% csrf_token %}
+        <table style="margin: 20px 20px; font-size: medium">
+            <thead>
+                <tr>
+                    <th style="width: 5%; height: auto">序号</th>
+                    <th style="width: 8%; height: auto">职业名称</th>
+                    <th style="width: 30%; height: auto">职业描述</th>
+                    <th style="width: 30%; height: auto">任职资格</th>
+                    <th style="width: 10%; height: auto">薪资水平</th>
+                    <th style="width: 12%; height: auto">性格要求</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for job_form in job_formlist %}
+                <tr style="height: 180px">
+                    <td style="width: 5%; height: auto">{{ forloop.counter }}</td>
+                    <td style="width: 8%; height: auto">{{ job_form.job_name }}</td>
+                    <td style="width: 30%; height: auto">{{ job_form.description }}</td>
+                    <td style="width: 30%; height: auto">{{ job_form.requirement }}</td>
+                    <td style="width: 10%; height: auto">{{ job_form.salary }}</td>
+                    <td style="width: 12%; height: auto">{{ job_form.character }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <br>
+
+    <div align="center">
+        <h3>新增职业信息</h3>
+        <hr align="center" width="80%">
+    </div>
+
+        <div  style="width: 60%; margin-left: 16%">
+                <div class="form-group">
+                    {{ job_form.job_name.label_tag }}
+                    {{ job_form.job_name }}
+                </div>
+                <div class="form-group">
+                    {{ job_form.description.label_tag }}
+                    {{ job_form.description }}
+                </div>
+                <div class="form-group">
+                    {{ job_form.requirement.label_tag }}
+                    {{ job_form.requirement }}
+                </div>
+                <div class="form-group">
+                    {{ job_form.salary.label_tag }}
+                    {{ job_form.salary }}
+                </div>
+                <div class="form-group">
+                    {{ job_form.character.label_tag }}
+                    {{ job_form.character }}
+                </div>
+                <br>
+            <button type="reset" class="button1">重置</button>
+            <button type="submit" class="button1">提交</button>
+        </div>
+
+
+
+
+
+    </form>
+
+
+
 
 {% endblock %}

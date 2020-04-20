@@ -100,7 +100,7 @@ class Plandone(models.Model):
         return self.name
 
 
-class Job:
+class Job(models.Model):
     job_salary = (
         ('3000以下', '3000以下'),
         ('3000-5000', '3000-5000'),

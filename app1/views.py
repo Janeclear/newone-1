@@ -1,7 +1,7 @@
 from django.shortcuts import render
 # create your views here.
 from app1 import models
-from newone.form import RegisterForm, UserForm, SelfinfoForm, PlanForm, PlandoneForm
+from newone.form import RegisterForm, UserForm, SelfinfoForm, PlanForm, PlandoneForm,JobForm
 from .models import Test
 from django.shortcuts import render, redirect
 from django import forms
@@ -328,3 +328,29 @@ def plan_done(request):
         "plan_form": plan_form
     }
     return render(request,  'plan_done.html',locals())#context=data
+
+
+def job(request):
+    if request.method == "POST":
+        job_form = JobForm(request.POST)
+        if job_form.is_valid():
+            job_name = job_form.cleaned_data['job_name']
+            description = job_form.cleaned_data['description']
+            requirement = job_form.cleaned_data['requirement']
+            salary = job_form.cleaned_data['salary']
+            character = job_form.cleaned_data['character']
+
+            new_job = models.Job.objects.create()
+            new_job.job_name = job_name
+            new_job.description = description
+            new_job.requirement = requirement
+            new_job.salary = salary
+            new_job.character = character
+            new_job.save()
+            return redirect('/job/')
+    job_form = JobForm()
+    job_formlist = models.Job.objects.all()
+    data = {
+        "job_formlist": job_formlist
+    }
+    return render(request, 'job.html', locals())  # context=data

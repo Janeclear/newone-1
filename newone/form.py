@@ -87,3 +87,18 @@ class PlandoneForm(forms.Form):
     plan2_learning_log = forms.CharField(label="计划2学习日志", max_length=1024, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))
     plan3_progress = forms.ChoiceField(label="计划3执行进度", required=False, choices=percent)
     plan3_learning_log = forms.CharField(label="计划3学习日志", max_length=1024, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))
+
+
+class JobForm(forms.Form):
+    job_salary = (
+        ('3000以下', '3000以下'),
+        ('3000-5000', '3000-5000'),
+        ('5000-8000', '5000-8000'),
+        ('8000-10000', '8000-10000'),
+        ('10000以上', '10000以上'),
+    )
+    job_name = forms.CharField(label="职业名称", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    description = forms.CharField(label="职业描述", max_length=512, widget=forms.Textarea(attrs={'class': 'form-control'}))
+    requirement = forms.CharField(label="任职资格", max_length=512, widget=forms.Textarea(attrs={'class': 'form-control'}))
+    salary = forms.ChoiceField(label="薪资水平", choices=job_salary)
+    character = forms.CharField(label="性格要求", max_length=256, widget=forms.TextInput(attrs={'class': 'form-control'}))
