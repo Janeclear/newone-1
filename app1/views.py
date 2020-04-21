@@ -307,6 +307,7 @@ def plan(request):
     }
     return render(request, 'plan.html', context=data_p)
 
+
 def plan_done(request):
     if request.method == "POST":
         #print('有POST')
@@ -354,3 +355,25 @@ def job(request):
         "job_formlist": job_formlist
     }
     return render(request, 'job.html', locals())  # context=data
+
+
+def jobinfo(request):
+    job_formlist = models.Job.objects.all()
+    data = {
+        "job_formlist": job_formlist
+    }
+    return render(request, 'jobinfo.html', locals())
+
+
+
+def jobnews(request):
+    job_form = models.Job.objects.get(id=id)
+    return render(request, 'jobnews.html')
+
+
+def jobdetail(request,nid):
+    job_form = models.Job.objects.get(id=nid)
+    data = {
+        'job_form':job_form
+    }
+    return render(request, 'jobdetail.html',locals())
