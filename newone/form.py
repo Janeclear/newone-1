@@ -32,11 +32,11 @@ class SelfinfoForm(forms.Form):
         #('female', '女'),
         ('女', '女'),
     )
-    username = forms.CharField(label="用户名　", max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    username = forms.CharField(label="用户名　", max_length=128, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     real_name = forms.CharField(label="姓　名　", max_length=128, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    sex = forms.ChoiceField(label='性　别　', choices=gender)
+    sex = forms.ChoiceField(label='性　别　', required=False, choices=gender)
     phone_number = forms.CharField(label="手机号码", max_length=11, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(label="邮箱地址", widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(label="邮箱地址", required=False,  widget=forms.EmailInput(attrs={'class': 'form-control'}))
     education = forms.ChoiceField(label="学　历　", required=False, choices=educations)
     major = forms.CharField(label="专　业　", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     age = forms.ChoiceField(label="年　龄　", required=False, choices=ages)

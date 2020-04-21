@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render
 # create your views here.
 from app1 import models
@@ -105,7 +106,12 @@ def planmaking(request):
             #new_plan.plan3 = plan3
             #new_plan.save()
             #已经new过了只需要update就行
-            models.Plan.objects.filter(name=username).update(plan1=plan1,plan2=plan2,plan3=plan3)
+            if plan1 != '':
+                models.Plan.objects.filter(name=username).update(plan1=plan1)
+            if plan2 != '':
+                models.Plan.objects.filter(name=username).update(plan2=plan2)
+            if plan3 != '':
+                models.Plan.objects.filter(name=username).update(plan3=plan3)
 
             message = "提交成功！"
 
@@ -119,7 +125,6 @@ def selfinfo(request):
     if request.method == "POST":
         selfinfo_form = SelfinfoForm(request.POST)
         if selfinfo_form.is_valid():  # 获取数据
-            username = selfinfo_form.cleaned_data['username']
             real_name = selfinfo_form.cleaned_data['real_name']
             sex = selfinfo_form.cleaned_data['sex']
             phone_number = selfinfo_form.cleaned_data['phone_number']
@@ -153,8 +158,34 @@ def selfinfo(request):
             #new_selfinfo.hobby = hobby
             #new_selfinfo.selfintroduction = selfintroduction
             #new_selfinfo.save()
-            models.Selfinfo.objects.filter(name=username).update(real_name=real_name, sex =sex, phone_number= phone_number, email=email,education=education,major=major,expected_salary=expected_salary,home_address=home_address,certificate_or_skills=certificate_or_skills,professional_history=professional_history,experience=experience,hobby=hobby,selfintroduction=selfintroduction)
-
+            if real_name != '':
+                models.Selfinfo.objects.filter(name=user.name).update(real_name=real_name)
+            if sex !='':
+                models.Selfinfo.objects.filter(name=user.name).update(sex =sex)
+            if phone_number != '':
+                models.Selfinfo.objects.filter(name=user.name).update(phone_number= phone_number)
+            if email != '':
+                models.Selfinfo.objects.filter(name=user.name).update(email=email)
+            if education != '':
+                models.Selfinfo.objects.filter(name=user.name).update(education=education)
+            if major != '':
+                models.Selfinfo.objects.filter(name=user.name).update(major=major)
+            if age != '':
+                models.Selfinfo.objects.filter(name=user.name).update(age=age)
+            if expected_salary != '':
+                models.Selfinfo.objects.filter(name=user.name).update(expected_salary=expected_salary)
+            if home_address != '':
+                models.Selfinfo.objects.filter(name=user.name).update(home_address=home_address)
+            if certificate_or_skills != '':
+                models.Selfinfo.objects.filter(name=user.name).update(certificate_or_skills=certificate_or_skills)
+            if professional_history != '':
+                models.Selfinfo.objects.filter(name=user.name).update(professional_history=professional_history)
+            if experience != '':
+                models.Selfinfo.objects.filter(name=user.name).update(experience=experience)
+            if hobby != '':
+                models.Selfinfo.objects.filter(name=user.name).update(hobby=hobby)
+            if selfintroduction != '':
+                models.Selfinfo.objects.filter(name=user.name).update(selfintroduction)
             return redirect('/selfinfo_done/')  # 自动跳转到登录页面
     selfinfo_form = SelfinfoForm()
     return render(request, 'selfinfo.html', locals())
@@ -187,12 +218,25 @@ def selfinfo_done(request):
 #在你的函数前面加上csrf_exempt装饰器
 @csrf_exempt
 def careerhelper(request):
+    user_a = models.Selfinfo.objects.get(name=user.name)
+    professionalhistory = user_a.professional_history
+    certificate = user_a.certificate_or_skills
+    major = user_a.major
+    selfintroduction = user_a.selfintroduction
+    re_jobs = models.Job.objects.filter(Q(job_name__contains=professionalhistory) | Q(job_name__contains=major) | Q(
+        description__contains=professionalhistory) | Q(description__contains=selfintroduction) | Q(
+        requirement__contains=certificate) | Q(requirement__contains=major) | Q(
+        requirement__contains=selfintroduction) | Q(character__contains=certificate))
+    data = {
+        're_jobs': re_jobs
+    }
+
     if request.method == "POST":
         jobchosena = request.POST.get('a')
         models.Selfinfo.objects.filter(name=user.name).update(jobchosen=jobchosena)
 
         return redirect('/plan/')
-    return render(request, 'careerhelper.html',)
+    return render(request, 'careerhelper.html',locals())
 
 
 def register01(request):
@@ -320,7 +364,19 @@ def plan_done(request):
             plan2_learning_log = plan_done_form.cleaned_data['plan2_learning_log']
             plan3_progress = plan_done_form.cleaned_data['plan3_progress']
             plan3_learning_log = plan_done_form.cleaned_data['plan3_learning_log']
-            models.Plandone.objects.filter(name=user.name).update(plan1_progress=plan1_progress, plan1_learning_log= plan1_learning_log, plan2_progress=plan2_progress, plan2_learning_log=plan2_learning_log, plan3_progress=plan3_progress,plan3_learning_log=plan3_learning_log)
+
+            if plan1_progress != '':
+                models.Plandone.objects.filter(name=user.name).update(plan1_progress=plan1_progress)
+            if plan1_learning_log != '':
+                models.Plandone.objects.filter(name=user.name).update(plan1_learning_log=plan1_learning_log)
+            if plan2_progress != '':
+                models.Plandone.objects.filter(name=user.name).update(plan2_progress=plan2_progress)
+            if plan2_learning_log != '':
+                models.Plandone.objects.filter(name=user.name).update(plan2_learning_log=plan2_learning_log)
+            if plan3_progress != '':
+                models.Plandone.objects.filter(name=user.name).update(plan3_progress=plan3_progress)
+            if plan3_learning_log != '':
+                models.Plandone.objects.filter(name=user.name).update(plan3_learning_log=plan3_learning_log)
             #print('有修改')
             return redirect('/plan/')
     plan_done_form = PlandoneForm()
@@ -367,7 +423,7 @@ def jobinfo(request):
 
 
 def jobnews(request):
-    job_form = models.Job.objects.get(id=id)
+    pass
     return render(request, 'jobnews.html')
 
 

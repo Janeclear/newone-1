@@ -23,7 +23,8 @@
                                     <tr>
                                         <td>
                                             <!-- 左对齐 -->
-                                                <div class="yihang">
+                                            {% for job_form in re_jobs %}
+                                                <div style="margin: 20px 10%" class="yihang">
                                                     <div class="media-left">
                                                         <img src="/static/images/0001.jpg"
                                                              height="100"
@@ -31,49 +32,17 @@
                                                              alt="img"/>
                                                     </div>
                                                     <h4 class="media-heading">
-                                                        职业推荐1：java开发工程师
+                                                        {{job_form.job_name}}
                                                     </h4>
-                                                    <p>职位描述: 1、需求分析并设计实现方案编写代码并测试　　　</p>
-                                                    <p>　　　　2、具体功能的实现以及与相关模块的接口集成</p>
-                                                    <p>　　　　3、进行软件程序的调试和维护</p>
-                                                    <p>任职资格：1、全日制本科学历，计算机相关专业毕业</p>
-                                                    <p>薪资待遇：7k-15k/月</p>
+                                                    <p>职业描述</p>
+                                                    <p>{{ job_form.description }}</p>
+                                                    任职资格
+                                                    <p>{{job_form.requirement}}</p>
+                                                    <p>薪资待遇：{{ job_form.salary }}</p>
+                                                    <p>性格要求：{{job_form.character}}</p>
                                                     <!--<p><a class="btn" href="#">详情 »</a></p>-->
                                                 </div>
-                                                <div class="yihang">
-                                                    <div class="media-left">
-                                                        <img src="/static/images/0001.jpg"
-                                                             height="100"
-                                                            width="100" class="media-object"
-                                                             alt="img"/>
-                                                    </div>
-                                                    <h4 class="media-heading">
-                                                        职业推荐2：安卓开发工程师
-                                                    </h4>
-                                                    <p>职位描述: 1、需求分析并设计实现方案编写代码并测试　　　</p>
-                                                    <p>　　　　2、具体功能的实现以及与相关模块的接口集成</p>
-                                                    <p>　　　　3、进行软件程序的调试和维护。</p>
-                                                    <p>任职资格：1、全日制本科学历，计算机相关专业毕业</p>
-                                                    <p>薪资待遇：7k-15k/月</p>
-                                                    <!--<p><a class="btn" href="#">详情 »</a></p>-->
-                                                </div>
-                                                <div class="yihang">
-                                                    <div class="media-left">
-                                                        <img src="/static/images/0001.jpg"
-                                                             height="100"
-                                                            width="100" class="media-object"
-                                                             alt="img"/>
-                                                    </div>
-                                                    <h4 class="media-heading">
-                                                        职业推荐3：产品经理
-                                                    </h4>
-                                                    <p>职位描述: 1、需求分析并设计实现方案编写代码并测试　　　</p>
-                                                    <p>　　　　2、具体功能的实现以及与相关模块的接口集成</p>
-                                                    <p>　　　　3、进行软件程序的调试和维护。</p>
-                                                    <p>任职资格：1、全日制本科学历，计算机相关专业毕业</p>
-                                                    <p>薪资待遇：7k-15k/月</p>
-                                                    <!--<p><a class="btn" href="#">详情 »</a></p>-->
-                                                </div>
+                                                {% endfor %}
                                         </td>
                                     </tr>
                                 </tbody>

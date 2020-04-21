@@ -10,10 +10,6 @@
     <form class="form-selfinfo"  action="/selfinfo/" method="post" >
     {% csrf_token %}
     <div class="form-group">
-        {{ selfinfo_form.username.label_tag }}
-        {{ selfinfo_form.username }}
-    </div>
-    <div class="form-group">
         {{ selfinfo_form.real_name.label_tag }}
         {{ selfinfo_form.real_name }}
     </div>
