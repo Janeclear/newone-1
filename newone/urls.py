@@ -16,11 +16,11 @@ Including another URLconf
 from django.conf.urls import *
 from django.contrib import admin
 
-from app1.views import index, login, plan_done, jobinfo, jobnews, jobdetail
+from app1.views import index, login, plan_done, jobinfo, jobnews, jobdetail,jobnews_show,jobnewsdetail
 from app1.views import plan
 from app1.views import register01, selfinfo, logout, careerhelper
 from app1.views import base, Introduction, selfinfo_done, career
-from app1.views import elogin, ad_userinfo, planmaking, elogout, job
+from app1.views import elogin, ad_userinfo, planmaking, elogout, job,deletejob
 from app1.views import login02,login_a
 from . import testdb
 
@@ -57,6 +57,9 @@ urlpatterns = (
     url(r'^jobinfo/', jobinfo),
     url(r'^jobnews/', jobnews),
     url(r'^jobdetail/(?P<nid>\d+)$', jobdetail,name='jobdetail'),
+    url(r'^deletejob/(?P<nid>\d+)$', deletejob,name='deletejob'),
+    url(r'^jobnews_show/', jobnews_show),
+    url(r'^jobnewsdetail/(?P<nid>\d+)$', jobnewsdetail,name='jobnewsdetail'),
     #url(r'^remove_userinfo(?P<nid>\d+)/',views.removeuserinfo,name='reinfo'),
     # index
     # logout

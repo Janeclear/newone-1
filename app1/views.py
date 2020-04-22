@@ -2,13 +2,14 @@ from django.db.models import Q
 from django.shortcuts import render
 # create your views here.
 from app1 import models
-from newone.form import RegisterForm, UserForm, SelfinfoForm, PlanForm, PlandoneForm,JobForm
+from newone.form import RegisterForm, UserForm, SelfinfoForm, PlanForm, PlandoneForm,JobForm,JobnewsForm
 from .models import Test
 from django.shortcuts import render, redirect
 from django import forms
 from .static.forms import UserForm
 from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
 # Create your views here.
 
 
@@ -185,7 +186,7 @@ def selfinfo(request):
             if hobby != '':
                 models.Selfinfo.objects.filter(name=user.name).update(hobby=hobby)
             if selfintroduction != '':
-                models.Selfinfo.objects.filter(name=user.name).update(selfintroduction)
+                models.Selfinfo.objects.filter(name=user.name).update(selfintroduction=selfintroduction)
             return redirect('/selfinfo_done/')  # 自动跳转到登录页面
     selfinfo_form = SelfinfoForm()
     return render(request, 'selfinfo.html', locals())
@@ -413,6 +414,22 @@ def job(request):
     return render(request, 'job.html', locals())  # context=data
 
 
+def jobnews(request):
+    if request.method == "POST":
+        jobnews_form = JobnewsForm(request.POST)
+        if jobnews_form.is_valid():
+            title = jobnews_form.cleaned_data['title']
+            content = jobnews_form.cleaned_data['content']
+
+            new_jobnews = models.Jobnews.objects.create()
+            new_jobnews.title=title
+            new_jobnews.content=content
+            new_jobnews.save()
+            return redirect('/jobnews/')
+    jobnews_form = JobnewsForm()
+    return render(request, 'jobnews.html',locals())
+
+
 def jobinfo(request):
     job_formlist = models.Job.objects.all()
     data = {
@@ -421,10 +438,12 @@ def jobinfo(request):
     return render(request, 'jobinfo.html', locals())
 
 
-
-def jobnews(request):
-    pass
-    return render(request, 'jobnews.html')
+def jobnews_show(request):
+    jobnews_formlist = models.Jobnews.objects.all().order_by('-c_time')
+    data = {
+        "jobnews_formlist":jobnews_formlist
+    }
+    return render(request,'jobnews_show.html', locals() )
 
 
 def jobdetail(request,nid):
@@ -433,3 +452,16 @@ def jobdetail(request,nid):
         'job_form':job_form
     }
     return render(request, 'jobdetail.html',locals())
+
+
+def jobnewsdetail(request,nid):
+    jobnews_form = models.Jobnews.objects.get(id=nid)
+    data = {
+        'jobnews_form':jobnews_form
+    }
+    return render(request, 'jobnewsdetail.html',locals())
+
+
+def deletejob(request,nid):
+    models.Job.objects.filter(id=nid).delete()
+    return redirect('/job/')

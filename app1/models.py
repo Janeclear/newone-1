@@ -20,6 +20,18 @@ class Test(models.Model):
         verbose_name = '用户'
         verbose_name_plural = '用户'
 
+class Jobnews(models.Model):
+    title = models.CharField(max_length=128, default='无标题', blank=True)
+    content = models.CharField(max_length=4096, default='未编辑',blank=True)
+    c_time = models.DateTimeField(auto_now_add=True, null=True,blank=True)
+    def __str__(self):
+        return  self.title
+    class Meta:
+        ordering = ['c_time']
+        verbose_name = '职业资讯'
+        verbose_name_plural = '职业资讯'
+
+
 class Selfinfo(models.Model):
     educations = (
         ('中专及以下', '中专及以下'),

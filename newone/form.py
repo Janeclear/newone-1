@@ -102,3 +102,8 @@ class JobForm(forms.Form):
     requirement = forms.CharField(label="任职资格", max_length=512, widget=forms.Textarea(attrs={'class': 'form-control'}))
     salary = forms.ChoiceField(label="薪资水平", choices=job_salary)
     character = forms.CharField(label="性格要求", max_length=256, widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+
+class JobnewsForm(forms.Form):
+    title = forms.CharField(label="标题", max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    content = forms.CharField(label="内容", max_length=4096, widget=forms.Textarea(attrs={'class': 'form-control'}))

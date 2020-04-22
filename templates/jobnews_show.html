@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}职业资讯{% endblock %}
+{%load static  %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'CSS/jobnews.css' %}">
+{% endblock %}
+<style>
+div
+{
+    text-align:center;
+    border:2px solid #a1a1a1;
+    padding:10px 40px;
+    background:#dddddd;
+    width:350px;
+    border-radius:25px;
+    -moz-border-radius:25px; /* 老的 Firefox */
+}
+</style>
+{% block content %}
+    <div align="center">
+        <h3>职业资讯</h3>
+    </div>
+    <div align="center" class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Search for...">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="submit" value="搜索">搜索</button>
+        </span>
+    </div>
+    <hr align="center" width="80%">
+    <div style="border-radius:9px; margin-left: 10%;width: 80%; background: #bce8f1; border-color: #555555;">
+
+        {% for jobnews_form in jobnews_formlist %}
+        <br>
+        <div style="margin: 20px">
+            <h4>{{ jobnews_form.title }}</h4>
+            <p>{{ jobnews_form.c_time }}</p>
+            <p><a style="font-size: 18px" class="btn" href="{% url 'jobnewsdetail' jobnews_form.id%}">查看详情>></a></p>
+        </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

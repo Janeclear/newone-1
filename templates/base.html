@@ -43,9 +43,10 @@
         .pg_dl{
             left: 200px;
             display: inline-block;
-            padding: 0 10px;
+            padding: 0 2px;
             color: white;
-            width: 200px;
+            width: 100px;
+            text-align: center;
         }
         .pg_header .pg_dl:hover{
             background-color: lightskyblue;
@@ -145,6 +146,16 @@
          background-color: #2459a2;
          color: white;
      }
+      .pg_header .words{
+            margin: 0 auto;
+            float: left;
+            width: 120px;
+            text-align: center;
+            line-height: 48px;
+            font-size: 16px;
+            color: white;
+        }
+
     </style>
   </head>
   <body style="background-image: url(../static/images/backblue03.jpg); background-size:100%;">
@@ -179,6 +190,7 @@
                   <li><a class="pg_dl" id="i77" href="/jobinfo/">职业信息</a></li>
                   <li><a class="pg_dl" id="i77" href="/plan/">成长计划</a></li>
                   <li><a class="pg_dl" id="i77" href="/plan_done/">成长记录</a></li>
+                  <li><a class="pg_dl" id="i77" href="/jobnews_show/">职业资讯</a></li>
                   <li><a class="pg_dl" id="i77" href="/logout/">退出登录</a></li>
                   </ul>
               {% else %}

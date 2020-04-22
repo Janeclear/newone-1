@@ -4,6 +4,14 @@
     <link rel="stylesheet" href="{% static 'CSS/job.css' %}">
 {% endblock %}
 {% block content %}
+    <!--弹出确认删除对话框
+    { if messages %}
+        <script>
+            { for msg in messages %}
+                alert('{ msg.message }}');
+            { endfor %}
+        </script>
+    { endif %}-->
     <!--在这里显示已有职业信息，下面设置新增职业按钮可以增加新的职业信息 -->
     <div align="center">
         <h3>职业信息列表</h3>
@@ -15,12 +23,12 @@
         <table style="margin: 20px 20px; font-size: medium">
             <thead>
                 <tr>
-                    <th style="width: 5%; height: auto">序号</th>
-                    <th style="width: 8%; height: auto">职业名称</th>
+                    <th style="width: 4%; height: auto">序号</th>
+                    <th style="width: 6%; height: auto">职业名称</th>
                     <th style="width: 30%; height: auto">职业描述</th>
                     <th style="width: 30%; height: auto">任职资格</th>
-                    <th style="width: 10%; height: auto">薪资水平</th>
-                    <th style="width: 12%; height: auto">性格要求</th>
+                    <th style="width: 8%; height: auto">薪资水平</th>
+                    <th style="width: 10%; height: auto">性格要求</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +40,8 @@
                     <td style="width: 30%; height: auto">{{ job_form.requirement }}</td>
                     <td style="width: 10%; height: auto">{{ job_form.salary }}</td>
                     <td style="width: 12%; height: auto">{{ job_form.character }}</td>
+                    <td style="width: 12%; height: auto"> <p><a style="font-size: 18px" class="btn" href="{% url 'deletejob' job_form.id%}">删除>></a></p></td>
+                    <!--<td style="width: 12%; height: auto"> <p><a style="font-size: 18px" class="btn" href="{ url 'deletejob' job_form.id%}">修改>></a></p></td>-->
                 </tr>
             {% endfor %}
             </tbody>

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}职业信息详情{% endblock %}
+{%load static  %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'CSS/jobnews.css' %}">
+{% endblock %}
+<style>
+div
+{
+text-align:center;
+border:2px solid #a1a1a1;
+padding:10px 40px;
+background:#dddddd;
+width:350px;
+border-radius:25px;
+-moz-border-radius:25px; /* 老的 Firefox */
+}
+</style>
+{% block content %}
+    <div align="center">
+        <h3>资讯详情</h3>
+    </div>
+    <hr align="center" width="80%">
+    <div style="margin:60px 120px; width: 80%;border-radius:9px; background:#bce8f1; border-color: #555555">
+        <h4>{{ jobnews_form.title }}</h4>
+        <p>{{ jobnews_form.content }}</p>
+
+        <p><a style="font-size: 18px" class="btn" href="/jobnews_show/">返回>></a></p>
+    </div>
+{% endblock %}
