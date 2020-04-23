@@ -1,0 +1,40 @@
+body {
+  background-color: #eee;
+}
+.form-alogin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-alogin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-alogin .form-control:focus {
+  z-index: 2;
+}
+.form-alogin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-alogin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.pg_header{
+  position: fixed;
+  height: 48px;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #2459a2;
+  line-height: 48px;
+}
+

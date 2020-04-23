@@ -1,8 +1,9 @@
-from django.db.models import Q
+from django.db.models import Q, F
 from django.shortcuts import render
 # create your views here.
 from app1 import models
-from newone.form import RegisterForm, UserForm, SelfinfoForm, PlanForm, PlandoneForm,JobForm,JobnewsForm
+from newone.form import RegisterForm, UserForm, SelfinfoForm, PlanForm, PlandoneForm, JobForm, JobnewsForm, \
+    EselfinfoForm
 from .models import Test
 from django.shortcuts import render, redirect
 from django import forms
@@ -73,6 +74,12 @@ def elogout(request):
     request.session.flush()
     return redirect("/elogin/")
 
+def alogout(request):
+    if not request.session.get('is_login',None):
+        return render("/alogin/")
+    request.session.flush()
+    return redirect("/alogin/")
+
 
 def base(request):
     pass
@@ -88,7 +95,7 @@ def login_a(request):
     #    <input type="submit" value="登录">
     # </form>
     # """
-    return render(request, 'form.html')
+    return render(request, 'login.html')
 
 
 def planmaking(request):
@@ -192,6 +199,30 @@ def selfinfo(request):
     return render(request, 'selfinfo.html', locals())
 
 
+def eselfinfo(request):
+    eselfinfo_forma = models.Euser.objects.get(ename=euser.ename)
+    data={
+        'eselfinfo_forma':eselfinfo_forma
+    }
+    if request.method == "POST":
+        eselfinfo_form = EselfinfoForm(request.POST)
+        if eselfinfo_form.is_valid():  # 获取数据
+            ename = eselfinfo_form.cleaned_data['ename']
+            sex = eselfinfo_form.cleaned_data['sex']
+            email = eselfinfo_form.cleaned_data['email']
+            aspect = eselfinfo_form.cleaned_data['aspect']
+
+            if sex != '':
+                models.Euser.objects.filter(ename=ename).update(sex=sex)
+            if email != '':
+                models.Euser.objects.filter(ename=ename).update(email=email)
+            if aspect != '':
+                models.Euser.objects.filter(ename=ename).update(aspect=aspect)
+            return redirect('/eselfinfo/')
+    eselfinfo_form = EselfinfoForm()
+    return render(request,'eselfinfo.html',locals())
+
+
 selfinfo_form = SelfinfoForm()
 data = {}
 
@@ -236,7 +267,7 @@ def careerhelper(request):
         jobchosena = request.POST.get('a')
         models.Selfinfo.objects.filter(name=user.name).update(jobchosen=jobchosena)
 
-        return redirect('/plan/')
+        return redirect('/careerhelper/')
     return render(request, 'careerhelper.html',locals())
 
 
@@ -303,26 +334,26 @@ def career(request):
     return render(request, 'career.html')
 
 
+
 def elogin(request):
+    global euser
     if request.method == "POST":
         login_form = UserForm(request.POST)  # 加上global
         message = "请检查填写的内容！"
         if login_form.is_valid():
             username = login_form.cleaned_data['username']
             password = login_form.cleaned_data['password']
-            if username=='专家':
-                try:
-                    euser = models.Test.objects.get(name='专家')
-                    if euser.password == password:
-                        request.session['is_login'] = True
-                        request.session['user_id'] = euser.id
-                        request.session['user_name'] = euser.name
-                        return redirect("/ad_userinfo/")
-                    else:
-                        message = "密码不正确！"
-                except:
-                    message = "非专家用户！"
-            else:
+            try:
+                euser = models.Euser.objects.get(ename=username)
+                if euser.password == password:
+                    request.session['is_login'] = True
+                    request.session['user_id'] = euser.id
+                    request.session['user_name'] = euser.ename
+
+                    return redirect("/ad_userinfo/")
+                else:
+                    message = "密码不正确！"
+            except:
                 message = "非专家用户！"
         return render(request, 'elogin.html', locals())
 
@@ -330,16 +361,63 @@ def elogin(request):
     return render(request, 'elogin.html', locals())
 
 
+def alogin(request):
+    if request.method == 'POST':
+        alogin_form = UserForm(request.POST)
+        message = "请检查填写的内容！"
+        if alogin_form.is_valid():
+            username = alogin_form.cleaned_data['username']
+            password = alogin_form.cleaned_data['password']
+            if username == '管理员':
+                try:
+                    auser = models.Test.objects.get(name='管理员')
+                    if auser.password == password:
+                        request.session['is_login'] = True
+                        request.session['user_id'] = auser.id
+                        request.session['user_name'] = auser.name
+                        return redirect("/admin_eu/")
+                    else:
+                        message = "密码不正确！"
+                except:
+                    message = "非管理员用户！"
+            else:
+                message = "非管理员用户！"
+        return render(request, 'alogin.html', locals())
+
+    alogin_form = UserForm()
+    return render(request,'alogin.html',locals())
+
+
 def ad_userinfo(request):
-    selfinfo_formlist = models.Selfinfo.objects.all()
-    plan_formlist = models.Plan.objects.all()
-    plan_done_formlist = models.Plandone.objects.all()
+    selfinfo_formlist = models.Selfinfo.objects.filter(expert=euser.ename)
+    plan_formlist = models.Plan.objects.filter(expert=euser.ename)
+    plan_done_formlist = models.Plandone.objects.filter(expert=euser.ename)
     data = {
         "selfinfo_formlist": selfinfo_formlist,
         "plan_formlist": plan_formlist,
         "plan_done_formlist":plan_done_formlist
     }
     return render(request, 'ad_userinfo.html',context=data)
+
+def admin_eu(request):
+    selfinfo_formlist = models.Selfinfo.objects.all()
+    eselfinfo_formlist = models.Euser.objects.all()
+    data = {
+        "selfinfo_formlist": selfinfo_formlist,
+        "eselfinfo_formlist": eselfinfo_formlist,
+    }
+
+    if request.method == "POST":
+        uname = request.POST.get('a')
+        ename = request.POST.get('b')
+        models.Selfinfo.objects.filter(name=uname).update(expert=ename)
+        models.Plandone.objects.filter(name=uname).update(expert=ename)
+        models.Plan.objects.filter(name=uname).update(expert=ename)
+        models.Euser.objects.filter(ename=ename).update(usernumber=F('usernumber')+1)
+
+        return redirect('/admin_eu/')
+
+    return render(request,'admin_eu.html',context=data)
 
 
 data_p={}
@@ -422,12 +500,29 @@ def jobnews(request):
             content = jobnews_form.cleaned_data['content']
 
             new_jobnews = models.Jobnews.objects.create()
-            new_jobnews.title=title
-            new_jobnews.content=content
+            new_jobnews.title = title
+            new_jobnews.content = content
             new_jobnews.save()
             return redirect('/jobnews/')
     jobnews_form = JobnewsForm()
-    return render(request, 'jobnews.html',locals())
+    return render(request, 'jobnews.html', locals())
+
+
+def add_expert(request):
+    if request.method == 'POST':
+        expert_form = UserForm(request.POST)
+        if expert_form.is_valid():
+            username = expert_form.cleaned_data['username']
+            password = expert_form.cleaned_data['password']
+
+            new_expert = models.Euser.objects.create()
+            new_expert.ename = username
+            new_expert.password = password
+            new_expert.save()
+
+            return redirect('/add_expert/')
+    expert_form = UserForm()
+    return render(request, 'add_expert.html', locals())
 
 
 def jobinfo(request):
@@ -462,6 +557,9 @@ def jobnewsdetail(request,nid):
     return render(request, 'jobnewsdetail.html',locals())
 
 
-def deletejob(request,nid):
+def deletejob(request, nid):
     models.Job.objects.filter(id=nid).delete()
     return redirect('/job/')
+
+
+

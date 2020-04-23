@@ -16,8 +16,9 @@ Including another URLconf
 from django.conf.urls import *
 from django.contrib import admin
 
-from app1.views import index, login, plan_done, jobinfo, jobnews, jobdetail,jobnews_show,jobnewsdetail
-from app1.views import plan
+from app1.views import index, login, plan_done, jobinfo, jobnews, jobdetail, jobnews_show, jobnewsdetail, alogout, \
+    add_expert, eselfinfo
+from app1.views import plan,alogin,admin_eu
 from app1.views import register01, selfinfo, logout, careerhelper
 from app1.views import base, Introduction, selfinfo_done, career
 from app1.views import elogin, ad_userinfo, planmaking, elogout, job,deletejob
@@ -38,6 +39,7 @@ urlpatterns = (
     url(r'^login_a', login_a),
     url(r'^logout', logout),
     url(r'^elogout', elogout),
+    url(r'alogout', alogout),
 
     url(r'^register01/', register01),
     url(r'^base/', base),
@@ -60,6 +62,10 @@ urlpatterns = (
     url(r'^deletejob/(?P<nid>\d+)$', deletejob,name='deletejob'),
     url(r'^jobnews_show/', jobnews_show),
     url(r'^jobnewsdetail/(?P<nid>\d+)$', jobnewsdetail,name='jobnewsdetail'),
+    url(r'^alogin/', alogin),
+    url(r'^admin_eu/', admin_eu),
+    url(r'^add_expert/', add_expert),
+    url(r'^eselfinfo', eselfinfo),
     #url(r'^remove_userinfo(?P<nid>\d+)/',views.removeuserinfo,name='reinfo'),
     # index
     # logout

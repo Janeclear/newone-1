@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>专家系统</title>
+    <title>管理员系统</title>
     {%load static  %}
     <link href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'CSS/login.css' %}"><!-- Bootstrap -->
@@ -69,11 +69,6 @@
         }
         input[type="password"]{
             width: 200px;
-            height: 25px;
-            border-radius: 6px;
-        }
-        input[type="email"]{
-            width: 400px;
             height: 25px;
             border-radius: 6px;
         }
@@ -156,27 +151,13 @@
 <body>
 <div class = "pg_header">
         <a class = "logo">CareerHelper</a>
-        <a class="pg_dl" id="i77">expert</a>
-        <li class="yihang"><a class="pg_dl" id="i77" href="/eselfinfo/">个人信息</a></li>
-        <li class="yihang"><a class="pg_dl" id="i77" href="/ad_userinfo/">用户信息</a></li>
-        <li class="yihang"><a class="pg_dl" id="i77" href="/planmaking/">制定计划</a></li>
-        <li class="yihang"><a class="pg_dl" id="i77" href="/job/">职业信息</a></li>
-        <li class="yihang"><a class="pg_dl" id="i77" href="/jobnews/">职业资讯</a></li>
-        <li class="yihang"><a class="pg_dl" id="i77" href="/elogout/">退出登录</a></li>
-
+        <a class="pg_dl" id="i77">administer</a>
+        <li class="yihang"><a class="pg_dl" id="i77" href="/admin_eu/">任务分配</a></li>
+        <li class="yihang"><a class="pg_dl" id="i77" href="/add_expert/">新增专家用户</a></li>
+        <li class="yihang"><a class="pg_dl" id="i77" href="/alogout/">退出登录</a></li>
 </div>
 <br><br>
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<div class="page-header">
-				<h1>
-					Career Helper <small>职业助手</small>
-				</h1>
-			</div>
-		</div>
-	</div>
-</div>
+
 
 
 {% block content %}

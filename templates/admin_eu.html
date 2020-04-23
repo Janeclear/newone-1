@@ -1,0 +1,103 @@
+{% extends 'abase.html' %}
+
+{% block content %}
+    <div align="center" >
+        <h3 align="center">用户个人信息表</h3>
+    </div>
+    <table align="center" style="font-size: 16px;border:2px solid white" >
+        <thead>
+            <tr>
+                <th style="border:2px solid white">序号</th>
+                <th style="border:2px solid white">用户名</th>
+                <th style="border:2px solid white">性别</th>
+                <th style="border:2px solid white">学历</th>
+                <th style="border:2px solid white">专业</th>
+                <th style="border:2px solid white">年龄</th>
+                <th style="border:2px solid white">期望月薪</th>
+                <th style="border:2px solid white">家庭住址</th>
+                <th style="border:2px solid white">证书技能</th>
+                <th style="border:2px solid white">职业经历</th>
+                <th style="border:2px solid white">实践经历</th>
+                <th style="border:2px solid white">兴趣爱好</th>
+                <th style="border:2px solid white">自我介绍</th>
+                <th style="border:2px solid white">所选职业</th>
+                <th style="border:2px solid white">分配专家</th>
+            </tr>
+        </thead>
+        <tbody >
+        {% for selfinfo_form in selfinfo_formlist %}
+            <tr>
+                <td style="border:2px solid white">{{ forloop.counter }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.name }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.sex }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.education }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.major }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.age }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.expected_salary }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.home_address }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.certificate_or_skills }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.professional_history }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.experience }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.hobby }}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.selfintroduction}}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.jobchosen}}</td>
+                <td style="border:2px solid white">{{ selfinfo_form.expert}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div align="center" >
+        <h3 align="center">专家信息表</h3>
+    </div>
+
+    <table align="center" style="font-size: 16px;border:2px solid white" >
+        <thead>
+            <tr>
+                <th style="border:2px solid white">序号</th>
+                <th style="border:2px solid white">专家名</th>
+                <th style="border:2px solid white">性别</th>
+                <th style="border:2px solid white">邮箱</th>
+                <th style="border:2px solid white">擅长领域</th>
+                <th style="border:2px solid white">负责用户数</th>
+            </tr>
+        </thead>
+        <tbody >
+        {% for eselfinfo_form in eselfinfo_formlist %}
+            <tr>
+                <td style="border:2px solid white">{{ forloop.counter }}</td>
+                <td style="border:2px solid white">{{ eselfinfo_form.ename }}</td>
+                <td style="border:2px solid white">{{ eselfinfo_form.sex }}</td>
+                <td style="border:2px solid white">{{ eselfinfo_form.email }}</td>
+                <td style="border:2px solid white">{{ eselfinfo_form.aspect }}</td>
+                <td style="border:2px solid white">{{ eselfinfo_form.usernumber}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br>
+
+
+    <form class="form-selfinfo"  action="/admin_eu/" method="post" >
+        {% csrf_token %}
+        <br>
+        <br>
+        <div align="center" >
+            <h3 align="center">任务分配</h3>
+        </div>
+        <hr align="center" width="80%">
+        <div align="center">
+            <input height="10px" style="font-size: larger"  type=“text" name="a" >求职用户</input>
+            <input height="10px" style="font-size: larger"  type=“text" name="b" >匹配专家</input>
+            <br>
+            <br>
+            <button type="reset" class="button1">重置</button>
+            <button type="submit" class="button1">提交</button>
+        </div>
+    </form>
+
+
+
+
+
+{% endblock %}

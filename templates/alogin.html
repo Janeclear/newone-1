@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>专家系统</title>
+    <title>管理员登录</title>
     {%load static  %}
     <link href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'CSS/login.css' %}"><!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'CSS/alogin.css' %}"><!-- Bootstrap -->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -37,7 +37,7 @@
             left: 300px;
             display: inline-block;
             padding: 0 20px;
-            width: 160px;
+            width: 60px;
             color: white;
         }
         .pg_header .pg_dl:hover{
@@ -63,17 +63,12 @@
             font-weight: bold;
         }
         input[type="text"]{
-            width: 400px;
+            width: 200px;
             height: 25px;
             border-radius: 6px;
         }
         input[type="password"]{
             width: 200px;
-            height: 25px;
-            border-radius: 6px;
-        }
-        input[type="email"]{
-            width: 400px;
             height: 25px;
             border-radius: 6px;
         }
@@ -128,26 +123,6 @@
             margin-right: -120px;
             margin-top: -25px;
         }
-        .yihang{
-            display: inline-block;
-        }
-
-        .button1 {
-         -webkit-transition-duration: 0.4s;
-         transition-duration: 0.4s;
-         padding: 8px 16px;
-         text-align: center;
-         background-color: white;
-         color: black;
-         border: 3px solid #2459a2;
-         border-radius:5px;
-        }
-
-        .button1:hover {
-         background-color: #2459a2;
-         color: white;
-        }
-
     </style>
 </head>
 
@@ -156,14 +131,7 @@
 <body>
 <div class = "pg_header">
         <a class = "logo">CareerHelper</a>
-        <a class="pg_dl" id="i77">expert</a>
-        <li class="yihang"><a class="pg_dl" id="i77" href="/eselfinfo/">个人信息</a></li>
-        <li class="yihang"><a class="pg_dl" id="i77" href="/ad_userinfo/">用户信息</a></li>
-        <li class="yihang"><a class="pg_dl" id="i77" href="/planmaking/">制定计划</a></li>
-        <li class="yihang"><a class="pg_dl" id="i77" href="/job/">职业信息</a></li>
-        <li class="yihang"><a class="pg_dl" id="i77" href="/jobnews/">职业资讯</a></li>
-        <li class="yihang"><a class="pg_dl" id="i77" href="/elogout/">退出登录</a></li>
-
+        <a class="pg_dl" id="i77">administer</a>
 </div>
 <br><br>
 <div class="container">
@@ -176,11 +144,42 @@
 			</div>
 		</div>
 	</div>
+	<div class="row clearfix">
+		<div class="col-md-3 column">
+			<img src="../static/images/0001.jpg" />
+            <br>
+            <br>
+            <br>
+            <li><a style="color: white; font-size: 16px" href="/career/">回到首页</a></li>
+		</div>
+		<div class="col-md-6 column">
+            <form class='form-alogin' action="/alogin/" method="post" >
+
+                {% if message %}
+                    <div class="alert alert-warning">{{ message }}</div>
+                {% endif %}
+
+                {% csrf_token %}
+                <h2 class="text-center" >欢迎登录</h2>
+                <br>
+
+                <div class="form-group">
+                    {{ alogin_form.username.label_tag }}
+                    {{ alogin_form.username}}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{ alogin_form.password.label_tag }}
+                    {{ alogin_form.password }}
+                </div>
+
+                <br>
+                <button type="reset" class="btn btn-default pull-left">重置</button>
+                <button type="submit" class="btn btn-primary pull-right">登录</button>
+            </form>
+		</div>
+
+	</div>
 </div>
-
-
-{% block content %}
-{% endblock %}
 </body>
-
 </html>

@@ -3,6 +3,7 @@
 # Author:Jane time:2020-04-05
 from django import forms
 
+
 class SelfinfoForm(forms.Form):
     educations = (
         ('中专及以下', '中专及以下'),
@@ -49,9 +50,28 @@ class SelfinfoForm(forms.Form):
     selfintroduction = forms.CharField(label="自我介绍", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))
     jobchosen = forms.CharField(label='目标职业', max_length=150, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
+
+class EselfinfoForm(forms.Form):
+    gender = (
+        ('男', '男'),
+        ('女', '女'),
+    )
+    ename = forms.CharField(label="用户名　", max_length=128, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    sex = forms.ChoiceField(label='性　别　', required=False, choices=gender)
+    email = forms.EmailField(label="邮箱地址", required=False,  widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    aspect = forms.CharField(label="擅长领域", max_length=128, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+
 class UserForm(forms.Form):
     username = forms.CharField(label="用户名", max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(label="密　码", max_length=256, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+
+#class AuserForm(forms.Form):
+# 没用，重复了
+#    username = forms.CharField(label="用户名", max_length=128, widget=forms.TextInput(attrs={'class':'form-control'}))
+#    password = forms.CharField(label="密码", max_length=128, widget=forms.PasswordInput(attrs={'class':'form-control'}))
+
 
 class RegisterForm(forms.Form):
     gender = (
@@ -107,3 +127,5 @@ class JobForm(forms.Form):
 class JobnewsForm(forms.Form):
     title = forms.CharField(label="标题", max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
     content = forms.CharField(label="内容", max_length=4096, widget=forms.Textarea(attrs={'class': 'form-control'}))
+
+

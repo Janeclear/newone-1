@@ -20,6 +20,29 @@ class Test(models.Model):
         verbose_name = '用户'
         verbose_name_plural = '用户'
 
+class Euser(models.Model):
+    gender = (
+        ('男', '男'),
+        ('女', '女'),
+    )
+    ename = models.CharField(max_length=50, default=0, unique=True, blank=True)
+    password = models.CharField(max_length=50, default=0, blank=True)
+    # email=models.CharField(max_length=50)
+    email = models.EmailField(default=0, blank=True)
+    sex = models.CharField(max_length=32, choices=gender, default='男', blank=True)
+    c_time = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    aspect = models.CharField(max_length=128, default='未填写', blank=True)
+    usernumber = models.SmallIntegerField(default=0, blank=True)
+
+    def __str__(self):
+        return self.ename
+
+    class Meta:
+        ordering = ['c_time']
+        verbose_name = '专家'
+        verbose_name_plural = '专家'
+
+
 class Jobnews(models.Model):
     title = models.CharField(max_length=128, default='无标题', blank=True)
     content = models.CharField(max_length=4096, default='未编辑',blank=True)
@@ -77,6 +100,7 @@ class Selfinfo(models.Model):
     hobby = models.CharField(max_length=150, default='未填写', blank=True)
     selfintroduction = models.CharField(max_length=150, default='未填写',  blank=True)
     jobchosen = models.CharField(max_length=150, default='尚未确定', blank=True)
+    expert = models.CharField(max_length=128, default='未分配', blank=True)
 
     def __str__(self):
         return self.name
@@ -86,6 +110,7 @@ class Plan(models.Model):
     plan1 = models.CharField(max_length=256, default='专家尚未制定，请耐心等待', blank=True)
     plan2 = models.CharField(max_length=256, default='专家尚未制定，请耐心等待', blank=True)
     plan3 = models.CharField(max_length=256, default='专家尚未制定，请耐心等待', blank=True)
+    expert = models.CharField(max_length=128, default='未分配', blank=True)
 
     def __str__(self):
         return self.name
@@ -107,6 +132,7 @@ class Plandone(models.Model):
     plan2_learning_log = models.CharField(max_length=1024, default='暂无记录', blank=True)
     plan3_progress = models.CharField(max_length=50, choices=percent, default='未开始', blank=True)
     plan3_learning_log = models.CharField(max_length=1024, default='暂无记录', blank=True)
+    expert = models.CharField(max_length=128, default='未分配', blank=True)
 
     def __str__(self):
         return self.name
