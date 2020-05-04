@@ -52,9 +52,6 @@ def login(request):
 #    pass
 #    return render(request, 'register.html')
 
-def login02(request):
-    pass
-    return render(request, 'login02.html')
 
 
 def logout(request):
@@ -86,18 +83,6 @@ def base(request):
     return redirect('/base/')
 
 
-def login_a(request):
-    # html="""
-    # <h2>欢迎登录！</h2>
-    # <form method="post">
-    #    <input type="text" name="username">
-    #    <input type="password" name="password">
-    #    <input type="submit" value="登录">
-    # </form>
-    # """
-    return render(request, 'login.html')
-
-
 def planmaking(request):
     if request.method =="POST":
         plan_form = PlanForm(request.POST)
@@ -116,10 +101,13 @@ def planmaking(request):
             #已经new过了只需要update就行
             if plan1 != '':
                 models.Plan.objects.filter(name=username).update(plan1=plan1)
+                models.Plandone.objects.filter(name=username).update(plan1_progress=0, plan1_learning_log='暂无记录')
             if plan2 != '':
                 models.Plan.objects.filter(name=username).update(plan2=plan2)
+                models.Plandone.objects.filter(name=username).update(plan2_progress=0, plan2_learning_log='暂无记录')
             if plan3 != '':
                 models.Plan.objects.filter(name=username).update(plan3=plan3)
+                models.Plandone.objects.filter(name=username).update(plan3_progress=0, plan3_learning_log='暂无记录')
 
             message = "提交成功！"
 
@@ -152,19 +140,6 @@ def selfinfo(request):
             #new_selfinfo = models.Selfinfo.objects.create()
             #new_selfinfo.name = username
             #new_selfinfo.real_name = real_name
-            #new_selfinfo.sex = sex
-            #new_selfinfo.phone_number = phone_number
-            #new_selfinfo.email = email
-            #new_selfinfo.education = education
-            #new_selfinfo.major = major
-            #new_selfinfo.age = age
-            #new_selfinfo.expected_salary = expected_salary
-            #new_selfinfo.home_address = home_address
-            #new_selfinfo.certificate_or_skills = certificate_or_skills
-            #new_selfinfo.professional_history = professional_history
-            #new_selfinfo.experience = experience
-            #new_selfinfo.hobby = hobby
-            #new_selfinfo.selfintroduction = selfintroduction
             #new_selfinfo.save()
             if real_name != '':
                 models.Selfinfo.objects.filter(name=user.name).update(real_name=real_name)
@@ -563,3 +538,18 @@ def deletejob(request, nid):
 
 
 
+def login02(request):
+    pass
+    return render(request, 'login02.html')
+
+
+def login_a(request):
+    # html="""
+    # <h2>欢迎登录！</h2>
+    # <form method="post">
+    #    <input type="text" name="username">
+    #    <input type="password" name="password">
+    #    <input type="submit" value="登录">
+    # </form>
+    # """
+    return render(request, 'login.html')
