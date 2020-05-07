@@ -553,3 +553,19 @@ def login_a(request):
     # </form>
     # """
     return render(request, 'login.html')
+
+def userinfo_test(request):
+    eselfinfo_formlist = models.Euser.objects.all()
+    data = {
+        "eselfinfo_formlist": eselfinfo_formlist,
+    }
+    return render(request, 'userinfo_test.html',context=data)
+
+
+def auserinfo(request):
+    selfinfo_formlist = models.Selfinfo.objects.all()
+    data = {
+        "selfinfo_formlist": selfinfo_formlist,
+    }
+    return render(request, 'auserinfo.html',context=data)
+

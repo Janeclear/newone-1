@@ -1,15 +1,25 @@
-{% extends 'abase.html' %}
+{% extends 'ecgbase.html' %}
 {%load static  %}
 {% block css %}
     <link rel="stylesheet" href="{% static 'CSS/expert.css' %}">
 {% endblock %}
 {% block content %}
-    <form class="form-expert" action="/add_expert/" method="post">
+
+    <div class="right_col" role="main">
+  <div class="">
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h1>新增专家用户 </h1>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+              <form class="form-expert" action="/add_expert/" method="post">
     {% csrf_token %}
-        <div align="center">
-            <h3>新增专家用户</h3>
-            <hr align="center" width="80%">
-        </div>
 
         <div  style="width: 60%; margin-left: 16%">
                 <div class="form-group">
@@ -25,6 +35,15 @@
             <button type="submit" class="button1">新增+</button>
         </div>
         </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
         <!--<table style="margin: 20px 20px; font-size: medium">
             <thead>
                 <tr>

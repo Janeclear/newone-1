@@ -123,6 +123,22 @@
             margin-right: -120px;
             margin-top: -25px;
         }
+        .button1 {
+         -webkit-transition-duration: 0s;
+         transition-duration: 0s;
+         padding: 8px 16px;
+         text-align: center;
+         background-color: white;
+         margin: 20px 40px 20px 20px;
+         color: black;
+         border: 1.5px solid #2459a2;
+         border-radius:5px;
+     }
+
+        .button1:hover {
+         background-color: #2459a2;
+         color: white;
+     }
     </style>
 </head>
 
@@ -173,9 +189,9 @@
                     {{ login_form.password }}
                 </div>
 
-                <br>
-                <button type="reset" class="btn btn-default pull-left">重置</button>
-                <button type="submit" class="btn btn-primary pull-right">登录</button>
+
+                <button type="reset" class="button1">重置</button>
+                <button type="submit" class="button1">登录</button>
             </form>
 		</div>
 

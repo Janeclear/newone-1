@@ -1,0 +1,88 @@
+{% extends 'ecgbase.html' %}
+
+{% block content %}
+
+<div class="right_col" role="main">
+  <div class="">
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h1>求职用户列表 </h1>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <table id="datatable" class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>用户名</th>
+                    <th>性别</th>
+                    <th>学历</th>
+                    <th>专业</th>
+                    <th>年龄</th>
+                    <th>期望月薪</th>
+                    <th>家庭住址</th>
+                    <th>证书技能</th>
+                    <th>职业经历</th>
+                    <th>实践经历</th>
+                    <th>兴趣爱好</th>
+                    <th>自我介绍</th>
+                    <th>所选职业</th>
+                    <th>分配专家</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                 {% for selfinfo_form in selfinfo_formlist %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ selfinfo_form.name }}</td>
+                        <td>{{ selfinfo_form.sex }}</td>
+                        <td>{{ selfinfo_form.education }}</td>
+                        <td>{{ selfinfo_form.major }}</td>
+                        <td>{{ selfinfo_form.age }}</td>
+                        <td>{{ selfinfo_form.expected_salary }}</td>
+                        <td>{{ selfinfo_form.home_address }}</td>
+                        <td>{{ selfinfo_form.certificate_or_skills }}</td>
+                        <td>{{ selfinfo_form.professional_history }}</td>
+                        <td>{{ selfinfo_form.experience }}</td>
+                        <td>{{ selfinfo_form.hobby }}</td>
+                        <td>{{ selfinfo_form.selfintroduction}}</td>
+                        <td>{{ selfinfo_form.jobchosen}}</td>
+                        <td>{{ selfinfo_form.expert}}</td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block js-list %}
+{{ block.super }}
+<script src="/static/dashboard3/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script src="/static/dashboard3/vendors/jszip/dist/jszip.js"></script>
+<script src="/static/dashboard3/vendors/pdfmake/build/pdfmake.js"></script>
+<script src="/static/dashboard3/vendors/pdfmake/build/vfs_fonts.js"></script>
+{% endblock %}
