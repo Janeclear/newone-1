@@ -1,0 +1,60 @@
+{% extends 'ecg_expert_base.html' %}
+{%load static  %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'CSS/job.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    {% if message %}
+        <div class="alert alert-warning">{{ message }}</div>
+    {% endif %}
+    <!--在这里显示已有职业信息，下面设置新增职业按钮可以增加新的职业信息 -->
+    <div class="right_col" role="main">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h1>职业信息 </h1>
+                    <div class="clearfix"></div>
+                </div>
+
+                {% csrf_token %}
+                <br> <br> <br>
+
+                <div align="center">
+                    <h3>职业信息列表</h3>
+                </div>
+                <hr align="center" width="80%">
+                <table style="margin: 20px 20px; font-size: medium">
+                        <thead>
+                            <tr>
+                                <th style="width: 4%; height: auto">序号</th>
+                                <th style="width: 6%; height: auto">职业名称</th>
+                                <th style="width: 30%; height: auto">职业描述</th>
+                                <th style="width: 30%; height: auto">任职资格</th>
+                                <th style="width: 8%; height: auto">薪资水平</th>
+                                <th style="width: 10%; height: auto">性格要求</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for job_form in job_formlist %}
+                            <tr style="height: 180px">
+                                <td style="width: 5%; height: auto">{{ forloop.counter }}</td>
+                                <td style="width: 8%; height: auto">{{ job_form.job_name }}</td>
+                                <td style="width: 30%; height: auto">{{ job_form.description }}</td>
+                                <td style="width: 30%; height: auto">{{ job_form.requirement }}</td>
+                                <td style="width: 10%; height: auto">{{ job_form.salary }}</td>
+                                <td style="width: 12%; height: auto">{{ job_form.character }}</td>
+                                <td style="width: 12%; height: auto"> <p><a style="font-size: 18px" onclick="return deleteJob();" href="{% url 'deletejob' job_form.id %}" >删除>></a></p></td>
+                                <!--<td style="width: 12%; height: auto"> <p><a style="font-size: 18px" class="btn" href="{ url 'deletejob' job_form.id%}">修改>></a></p></td>-->
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                <br>
+            </div>
+         </div>
+    </div>
+</div>
+{% endblock %}

@@ -460,10 +460,6 @@ def job(request):
             new_job.save()
             return redirect('/job/')
     job_form = JobForm()
-    job_formlist = models.Job.objects.all()
-    data = {
-        "job_formlist": job_formlist
-    }
     return render(request, 'job.html', locals())  # context=data
 
 
@@ -572,3 +568,10 @@ def auserinfo(request):
 def login_base(request):
     pass
     return render(request,'login_base.html')
+
+def jobelook(request):
+    job_formlist = models.Job.objects.all()
+    data = {
+        "job_formlist": job_formlist
+    }
+    return render(request,'jobelook.html',context=data)

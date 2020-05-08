@@ -27,6 +27,18 @@
         <link href="/static/dashboard/build/css/custom.css" rel="stylesheet">
         <link href="/static/CSS/style1.css" rel="stylesheet">
     {% endblock css-list %}
+
+    <script type="text/javascript" language="JavaScript">
+		function deleteJob()
+		{
+		     if(confirm("确定要删除吗?"))
+		     {
+		         return true;
+		     }else{
+		         return false;
+			 }
+		}
+    </script>
 </head>
 
 <body class="nav-md">
@@ -81,7 +93,7 @@
                                 </li>
                                 <li><a><i class="fa fa-info-circle"></i> 职业信息 <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="/job/">查看</a></li>
+                                        <li><a href="/jobelook/">查看</a></li>
                                         <li><a href="/job/">发布</a></li>
                                     </ul>
                                 </li>

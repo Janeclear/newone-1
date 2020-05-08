@@ -4,42 +4,54 @@
     <link rel="stylesheet" href="{% static 'CSS/planmaking.css' %}">
 {% endblock %}
 {% block content %}
-    <div style="text-align: center">
-        <h3 style="text-align: center">为用户制定职业成长计划</h3>
+
+<div class="right_col" role="main">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h1>职业成长计划制定 </h1>
+                    <div class="clearfix"></div>
+                </div>
+                <form style="margin: 30px 500px;font-size: 18px" class="form-plan"  action="/planmaking/" method="post" >
+                    {% if message %}
+                        <div class="alert alert-warning">{{ message }}</div>
+                    {% endif %}
+
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ plan_form.username.label_tag }}
+                        {{ plan_form.username }}
+                    </div>
+                    <div class="form-group">
+                        {{ plan_form.plan1.label_tag }}
+                        {{ plan_form.plan1 }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ plan_form.plan2.label_tag }}
+                        {{ plan_form.plan2 }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ plan_form.plan3.label_tag }}
+                        {{ plan_form.plan3}}
+                    </div>
+
+                    <br>
+                    <button type="reset" class="btn btn-default pull-left">重置</button>
+                    <button type="submit" class="btn btn-primary pull-right">提交</button>
+
+                </form>
+                <br>
+                <li style="margin: 60px"><a style="color: cornflowerblue; font-size: 16px" href="/ad_userinfo/">返回查看用户信息</a></li>
+            </div>
+         </div>
     </div>
-    <form style="margin: 30px 500px" class="form-plan"  action="/planmaking/" method="post" >
-    {% if message %}
-        <div class="alert alert-warning">{{ message }}</div>
-    {% endif %}
+</div>
 
-    {% csrf_token %}
-    <div class="form-group">
-        {{ plan_form.username.label_tag }}
-        {{ plan_form.username }}
-    </div>
-    <div class="form-group">
-        {{ plan_form.plan1.label_tag }}
-        {{ plan_form.plan1 }}
-    </div>
 
-    <div class="form-group">
-        {{ plan_form.plan2.label_tag }}
-        {{ plan_form.plan2 }}
-    </div>
 
-    <div class="form-group">
-        {{ plan_form.plan3.label_tag }}
-        {{ plan_form.plan3}}
-    </div>
-
-    <br>
-    <button type="reset" class="btn btn-default pull-left">重置</button>
-    <button type="submit" class="btn btn-primary pull-right">提交</button>
-
-</form>
-
-    <br>
-    <li style="margin: 60px"><a style="color: white; font-size: 16px" href="/ad_userinfo/">返回查看用户信息</a></li>
 
 
 {% endblock %}

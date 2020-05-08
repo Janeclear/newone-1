@@ -4,25 +4,38 @@
     <link rel="stylesheet" href="{% static 'CSS/jobnews.css' %}">
 {% endblock %}
 {% block content %}
-    <form class="form-jobnews" action="/jobnews/" method="post">
-    {% csrf_token %}
-        <div align="center">
-            <h3>职业资讯发布</h3>
-            <hr align="center" width="80%">
-        </div>
+<div class="right_col" role="main">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h1>职业成长计划制定 </h1>
+                    <div class="clearfix"></div>
+                </div>
+                <form class="form-jobnews" action="/jobnews/" method="post">
+                {% csrf_token %}
+                    <div align="center">
+                        <h3>职业资讯发布</h3>
+                        <hr align="center" width="80%">
+                    </div>
 
-        <div  style="width: 60%; margin-left: 16%">
-                <div class="form-group">
-                    {{ jobnews_form.title.label_tag }}
-                    {{ jobnews_form.title }}
-                </div>
-                <div class="form-group">
-                    {{ jobnews_form.content.label_tag }}
-                    {{ jobnews_form.content }}
-                </div>
-                <br>
-            <button type="reset" class="button1">重置</button>
-            <button type="submit" class="button1">提交</button>
-        </div>
-        </form>
+                    <div  style="width: 60%; margin-left: 16%;font-size: 18px">
+                            <div class="form-group">
+                                {{ jobnews_form.title.label_tag }}
+                                {{ jobnews_form.title }}
+                            </div>
+                            <div class="form-group">
+                                {{ jobnews_form.content.label_tag }}
+                                {{ jobnews_form.content }}
+                            </div>
+                            <br>
+                        <button type="reset" class="button1">重置</button>
+                        <button type="submit" class="button1">提交</button>
+                    </div>
+                </form>
+            </div>
+         </div>
+    </div>
+</div>
+
 {% endblock %}

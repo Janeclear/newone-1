@@ -17,7 +17,7 @@ from django.conf.urls import *
 from django.contrib import admin
 
 from app1.views import index, login, plan_done, jobinfo, jobnews, jobdetail, jobnews_show, jobnewsdetail, alogout, \
-    add_expert, eselfinfo, auserinfo, login_base
+    add_expert, eselfinfo, auserinfo, login_base, jobelook
 from app1.views import plan,alogin,admin_eu,userinfo_test
 from app1.views import register01, selfinfo, logout, careerhelper
 from app1.views import base, Introduction, selfinfo_done, career
@@ -70,6 +70,7 @@ urlpatterns = (
     url(r'^userinfo_test', userinfo_test),
     url(r'^auserinfo', auserinfo),
     url(r'^login_base', login_base),
+    url(r'^jobelook', jobelook),
     #url(r'^remove_userinfo(?P<nid>\d+)/',views.removeuserinfo,name='reinfo'),
     # index
     # logout
