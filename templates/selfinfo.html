@@ -1,85 +1,101 @@
-{% extends 'base.html' %}
+{% extends 'ecg_user_base.html' %}
 {% block title %}个人信息{% endblock %}
 {%load static  %}
 {% block css %}
     <link rel="stylesheet" href="{% static 'CSS/selfinfo.css' %}">
 {% endblock %}
 {% block content %}
-    <p><a class="btn" href="/selfinfo_done/">我已填写，查看已填写信息</a></p>
-    <h3 align="center" class="text-center">个人信息填写</h3>
-    <form class="form-selfinfo"  action="/selfinfo/" method="post" >
-    {% csrf_token %}
-    <div class="form-group">
-        {{ selfinfo_form.real_name.label_tag }}
-        {{ selfinfo_form.real_name }}
-    </div>
 
-    <div class="form-group">
-        {{ selfinfo_form.sex.label_tag }}
-        {{ selfinfo_form.sex }}
-    </div>
 
-    <div class="form-group">
-        {{ selfinfo_form.phone_number.label_tag }}
-        {{ selfinfo_form.phone_number}}
-    </div>
-    <div class="form-group">
-        {{ selfinfo_form.email.label_tag }}
-        {{ selfinfo_form.email}}
-    </div>
-    <div class="form-group">
-        {{ selfinfo_form.education.label_tag }}
-        {{ selfinfo_form.education}}
-    </div>
-    <div class="form-group">
-        {{ selfinfo_form.major.label_tag }}
-        {{ selfinfo_form.major}}
-    </div>
-    <div class="form-group">
-        {{ selfinfo_form.age.label_tag }}
-        {{ selfinfo_form.age}}
-    </div>
-    <div class="form-group">
-        {{ selfinfo_form.expected_salary.label_tag }}
-        {{ selfinfo_form.expected_salary}}
-    </div>
-    <div class="form-group">
-        {{ selfinfo_form.home_address.label_tag }}
-        {{ selfinfo_form.home_address}}
-    </div>
-    <div class="form-group">
-        {{ selfinfo_form.certificate_or_skills.label_tag }}
-        {{ selfinfo_form.certificate_or_skills}}
-    </div>
-    <div class="form-group">
-        {{ selfinfo_form.professional_history.label_tag }}
-        {{ selfinfo_form.professional_history}}
-    </div>
-    <div class="form-group">
-        {{ selfinfo_form.experience.label_tag }}
-        {{ selfinfo_form.experience}}
-    </div>
-    <div class="form-group">
-        {{ selfinfo_form.hobby.label_tag }}
-        {{ selfinfo_form.hobby}}
-    </div>
-    <div class="form-group">
-        {{ selfinfo_form.selfintroduction.label_tag }}
-        {{ selfinfo_form.selfintroduction}}
-    </div>
-        <!--
-    <div class="form-group">
-         selfinfo_form.jobchosen.label_tag
-         selfinfo_form.jobchosen
-    </div>
-         -->
 
-    <div class="form-group">
-        <p align= "left"  colspan="4" >请认真填写</p>
-    </div>
-    <br>
-    <button type="reset" class="button1">重置</button>
-    <button type="submit" class="button1">提交</button>
+<div class="right_col" role="main">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h1>个人信息填写</h1>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content" style="font-size: 18px">
+                    <form class="form-selfinfo"  action="/selfinfo/" method="post" >
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ selfinfo_form.real_name.label_tag }}
+                            {{ selfinfo_form.real_name }}
+                        </div>
 
-</form>
+                        <div class="form-group">
+                            {{ selfinfo_form.sex.label_tag }}
+                            {{ selfinfo_form.sex }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ selfinfo_form.phone_number.label_tag }}
+                            {{ selfinfo_form.phone_number}}
+                        </div>
+                        <div class="form-group">
+                            {{ selfinfo_form.email.label_tag }}
+                            {{ selfinfo_form.email}}
+                        </div>
+                        <div class="form-group">
+                            {{ selfinfo_form.education.label_tag }}
+                            {{ selfinfo_form.education}}
+                        </div>
+                        <div class="form-group">
+                            {{ selfinfo_form.major.label_tag }}
+                            {{ selfinfo_form.major}}
+                        </div>
+                        <div class="form-group">
+                            {{ selfinfo_form.age.label_tag }}
+                            {{ selfinfo_form.age}}
+                        </div>
+                        <div class="form-group">
+                            {{ selfinfo_form.expected_salary.label_tag }}
+                            {{ selfinfo_form.expected_salary}}
+                        </div>
+                        <div class="form-group">
+                            {{ selfinfo_form.home_address.label_tag }}
+                            {{ selfinfo_form.home_address}}
+                        </div>
+                        <div class="form-group">
+                            {{ selfinfo_form.certificate_or_skills.label_tag }}
+                            {{ selfinfo_form.certificate_or_skills}}
+                        </div>
+                        <div class="form-group">
+                            {{ selfinfo_form.professional_history.label_tag }}
+                            {{ selfinfo_form.professional_history}}
+                        </div>
+                        <div class="form-group">
+                            {{ selfinfo_form.experience.label_tag }}
+                            {{ selfinfo_form.experience}}
+                        </div>
+                        <div class="form-group">
+                            {{ selfinfo_form.hobby.label_tag }}
+                            {{ selfinfo_form.hobby}}
+                        </div>
+                        <div class="form-group">
+                            {{ selfinfo_form.selfintroduction.label_tag }}
+                            {{ selfinfo_form.selfintroduction}}
+                        </div>
+                            <!--
+                        <div class="form-group">
+                             selfinfo_form.jobchosen.label_tag
+                             selfinfo_form.jobchosen
+                        </div>
+                             -->
+
+                        <div class="form-group">
+                            <p align= "left"  colspan="4" >请认真填写</p>
+                        </div>
+                        <br>
+                        <button type="reset" class="button1">重置</button>
+                        <button type="submit" class="button1">提交</button>
+                    </form>
+
+                </div>
+            </div>
+         </div>
+    </div>
+</div>
+
 {% endblock %}
