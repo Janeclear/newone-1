@@ -3,72 +3,40 @@
 {% block css %}
     <link rel="stylesheet" href="{% static 'CSS/expert.css' %}">
 {% endblock %}
+
+
 {% block content %}
 
-    <div class="right_col" role="main">
-  <div class="">
-
-    <div class="clearfix"></div>
-
+<div class="right_col" role="main">
     <div class="row">
-      <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-          <div class="x_title">
-            <h1>新增专家用户 </h1>
-            <div class="clearfix"></div>
-          </div>
-          <div class="x_content">
-              <form class="form-expert" action="/add_expert/" method="post">
-    {% csrf_token %}
-
-        <div  style="width: 60%; margin-left: 16%">
-                <div class="form-group">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h1>新增专家用户 </h1>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                <form class="form-expert" action="/add_expert/" method="post">
+                    {% csrf_token %}
+                    <div  style="width: 60%; margin-left: 16%">
+                        <div class="form-group">
                     {{ expert_form.username.label_tag }}
                     {{ expert_form.username }}
                 </div>
-                <div class="form-group">
+                        <div class="form-group">
                     {{ expert_form.password.label_tag }}
                     {{ expert_form.password }}
                 </div>
-                <br>
-            <button type="reset" class="button1">重置</button>
-            <button type="submit" class="button1">新增+</button>
-        </div>
-        </form>
+                        <br>
+                        <button type="reset" class="button1">重置</button>
+                        <button type="submit" class="button1">新增+</button>
+                    </div>
+                </form>
 
-          </div>
-        </div>
-      </div>
+                </div>
+            </div>
+         </div>
     </div>
-
-  </div>
 </div>
 
-        <!--<table style="margin: 20px 20px; font-size: medium">
-            <thead>
-                <tr>
-                    <th style="width: 4%; height: auto">序号</th>
-                    <th style="width: 6%; height: auto">专家用户名</th>
-                    <th style="width: 30%; height: auto">密码</th>
-                    <th style="width: 30%; height: auto">性别</th>
-                    <th style="width: 8%; height: auto">邮箱</th>
-                    <th style="width: 10%; height: auto">擅长领域</th>
-                    <th style="width: 10%; height: auto">当前负责用户数量</th>
-                </tr>
-            </thead>
-            <tbody>
-            { for expert_form in expert_formlist %}
-                <tr style="height: 180px">
-                    <td style="width: 5%; height: auto">{ forloop.counter }}</td>
-                    <td style="width: 8%; height: auto">{ job_form.job_name }}</td>
-                    <td style="width: 30%; height: auto">{ job_form.description }}</td>
-                    <td style="width: 30%; height: auto">{ job_form.requirement }}</td>
-                    <td style="width: 10%; height: auto">{ job_form.salary }}</td>
-                    <td style="width: 12%; height: auto">{ job_form.character }}</td>
-                    <td style="width: 12%; height: auto"> <p><a style="font-size: 18px" class="btn" href="{ url 'deletejob' job_form.id%}">删除>></a></p></td>
-                    <--<td style="width: 12%; height: auto"> <p><a style="font-size: 18px" class="btn" href="{ url 'deletejob' job_form.id%}">修改>></a></p></td>--
-                </tr>
-            { endfor %}
-            </tbody>
-        </table>-->
 {% endblock %}

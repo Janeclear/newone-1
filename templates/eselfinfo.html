@@ -1,4 +1,4 @@
-{% extends 'ebase.html' %}
+{% extends 'ecg_expert_base.html' %}
 {% block title %}专家个人信息{% endblock %}
 {%load static  %}
 {% block css %}
@@ -6,48 +6,68 @@
 {% endblock %}
 {% block content %}
     <!--<p><a class="btn" href="/eselfinfo_done/">我已填写，查看已填写信息</a></p>-->
-    <div style="margin-left: 20%; width: 60%">
-        <p>用户名：{{ eselfinfo_forma.ename }}</p>
-        <p>性别：{{ eselfinfo_forma.sex }}</p>
-        <p>邮箱：{{ eselfinfo_forma.email }}</p>
-        <p>擅长领域：{{ eselfinfo_forma.aspect }}</p>
-    </div>
 
-    <br>
-    <br>
-    <h3 style="margin-left: 30%">信息完善</h3>
-    <form style="width: 60%; margin-left: 20%" class="form-eselfinfo"  action="/eselfinfo/" method="post" >
-    {% csrf_token %}
-    <div class="form-group">
-        {{ eselfinfo_form.ename.label_tag }}
-        {{ eselfinfo_form.ename }}
-    </div>
 
-    <div class="form-group">
-        {{ eselfinfo_form.sex.label_tag }}
-        {{ eselfinfo_form.sex }}
-    </div>
 
-    <div class="form-group">
-        {{ eselfinfo_form.email.label_tag }}
-        {{ eselfinfo_form.email}}
-    </div>
 
-    <div class="form-group">
-        {{ eselfinfo_form.aspect.label_tag }}
-        {{ eselfinfo_form.aspect}}
-    </div>
 
-        <!--
-    <div class="form-group">
-         selfinfo_form.jobchosen.label_tag
-         selfinfo_form.jobchosen
-    </div>
-         -->
-    <button type="reset" class="button1">重置</button>
-    <button type="submit" class="button1">提交</button>
+<div class="right_col" role="main">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h1>专家个人信息 </h1>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div style="margin-left: 20%; width: 60%">
+                        <p>用户名：{{ eselfinfo_forma.ename }}</p>
+                        <p>性别：{{ eselfinfo_forma.sex }}</p>
+                        <p>邮箱：{{ eselfinfo_forma.email }}</p>
+                        <p>擅长领域：{{ eselfinfo_forma.aspect }}</p>
+                    </div>
+                    <br>
+                    <br>
+                    <h3 style="margin-left: 30%">信息完善</h3>
+                    <form style="width: 60%; margin-left: 20%" class="form-eselfinfo"  action="/eselfinfo/" method="post" >
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ eselfinfo_form.ename.label_tag }}
+                            {{ eselfinfo_form.ename }}
+                        </div>
 
-</form>
+                        <div class="form-group">
+                            {{ eselfinfo_form.sex.label_tag }}
+                            {{ eselfinfo_form.sex }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ eselfinfo_form.email.label_tag }}
+                            {{ eselfinfo_form.email}}
+                        </div>
+
+                        <div class="form-group">
+                            {{ eselfinfo_form.aspect.label_tag }}
+                            {{ eselfinfo_form.aspect}}
+                        </div>
+
+                        <!--
+                    <div class="form-group">
+                         selfinfo_form.jobchosen.label_tag
+                         selfinfo_form.jobchosen
+                    </div>
+                         -->
+                        <button type="reset" class="button1">重置</button>
+                        <button type="submit" class="button1">提交</button>
+
+                </form>
+
+
+                </div>
+            </div>
+         </div>
+    </div>
+</div>
 
 
 {% endblock %}

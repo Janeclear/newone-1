@@ -1,23 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>首页</title>
-    {%load static  %}
-    <link href="../static/Wopop_files/style_log.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="../static/Wopop_files/style.css">
-    <link rel="stylesheet" type="text/css" href="../static/Wopop_files/jquery.ui.all.css">
-    <link href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'CSS/login.css' %}"><!-- Bootstrap -->
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <style>
+
         .pg_header{
             position: fixed;
             height: 48px;
@@ -126,50 +107,19 @@
             margin-right: -120px;
             margin-top: -25px;
         }
-        .yihang{
-            display: inline-block;
-        }
+        .button1 {
+         -webkit-transition-duration: 0s;
+         transition-duration: 0s;
+         padding: 8px 16px;
+         text-align: center;
+         background-color: white;
+         margin: 20px 40px 20px 20px;
+         color: black;
+         border: 1.5px solid #2459a2;
+         border-radius:5px;
+     }
 
-
-    </style>
-</head>
-<body class="login" mycollectionplug="bind" background="../static/images/background.jpg">
-
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<div>
-                <div class="row clearfix">
-		            <div class="col-md-12 column">
-			            <div class="page-header">
-				            <h1 style="color: white" align="center">
-					            Career Helper <small>职业助手</small>
-				            </h1>
-			            </div>
-		            </div>
-	            </div>
-				<h1 style="color: white" align="center">
-					职业推荐与规划平台
-				</h1>
-                <br>
-                <br>
-                <br>
-                <img alt="150x100" src="/static/images/hand01.jpg" style="width: 300px;height: 200px; border-radius: 10px;margin-left: 37%" />
-                <br>
-                <br>
-                <p align="center">
-					 <a style="font-size: 22px;color: white" href="/index/">我是求职用户</a>
-				</p>
-                <p align="center">
-                    <a style="font-size: 22px;color: white"href="/elogin/">我是专家</a>
-                </p>
-                <p align="center">
-                    <a style="font-size: 22px;color: white"href="/alogin/">我是管理员</a>
-                </p>
-
-			</div>
-		</div>
-	</div>
-</div>
-</body>
-</html>
+        .button1:hover {
+         background-color: #2459a2;
+         color: white;
+     }

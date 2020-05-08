@@ -569,3 +569,6 @@ def auserinfo(request):
     }
     return render(request, 'auserinfo.html',context=data)
 
+def login_base(request):
+    pass
+    return render(request,'login_base.html')

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>登录</title>
+    <link href="../static/Wopop_files/style_log.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../static/Wopop_files/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/Wopop_files/jquery.ui.all.css">
+    <link href="/static/CSS/style1.css" rel="stylesheet">
+
+</head>
+
+<body class="login" mycollectionplug="bind" background="../static/images/background.jpg">
+	<div class="login_m">
+		<div>
+            <h1 style="font-size: 40px; color: white; text-align: center;">职业助手</h1>
+        </div>
+        <br>
+        {% block content %}{% endblock %}
+    <li><a style="color: white; font-size: 20px; margin-left: 5%"  href="/career/">·回到首页</a></li>
+
+
+			<!--login_boder end-->
+    </div><!--login_m end-->
+{#				<form class="login_padding" id="login_model" action="login" method="POST">#}
+{##}
+{#					<h2>学号</h2>#}
+{#					<label>#}
+{#						<input type="text" name="username" id="username" class="txt_input txt_input2" onfocus="if (value ==&#39;Your student number&#39;){value =&#39;&#39;}" onblur="if (value ==&#39;&#39;){value=&#39;Your student number&#39;}" value="Your student number">#}
+{#					</label>#}
+{##}
+{#					<h2>密码(初始密码为学号)</h2>#}
+{#					<label>#}
+{#						<input type="password" name="password" id="userpwd" class="txt_input" onfocus="if (value ==&#39;******&#39;){value =&#39;&#39;}" onblur="if (value ==&#39;&#39;){value=&#39;******&#39;}" value="******">#}
+{#					</label>#}
+{##}
+{#					<div class="rem_sub">#}
+{##}
+{##}
+{#						<label>#}
+{#							<input type="submit" class="sub_button" name="button" id="button" value="SIGN-IN" style="opacity: 0.7;">#}
+{#						</label>#}
+{#					</div>#}
+{#				</form>#}
+</body></html>

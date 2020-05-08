@@ -25,6 +25,7 @@
 
         <!-- Custom Theme Style -->
         <link href="/static/dashboard/build/css/custom.css" rel="stylesheet">
+        <link href="/static/CSS/style1.css" rel="stylesheet">
     {% endblock css-list %}
 </head>
 
@@ -50,7 +51,7 @@
                         </div>
                         <div class="profile_info">
                             <span>欢迎，</span>
-                            <h2>{{ user.username | default:"小易" }}</h2>
+                            <h2>{{ request.session.user_name }}</h2>
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
@@ -65,41 +66,32 @@
                                 <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <!--<li><a href="index.html">控制台</a></li>-->
-                                        <li><a href="#">任务分配</a></li>
+                                        <li><a href="/eselfinfo/">专家个人信息</a></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-users"></i> 用户 <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="#">用户列表</a></li>
+                                        <li><a href="/ad_userinfo/">用户信息</a></li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-medkit"></i> 专家 <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-dashcube"></i>职业计划<span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="#">专家列表</a></li>
+                                        <li><a href="/planmaking/">制定计划</a></li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-user-md"></i> 医生 <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-info-circle"></i> 职业信息 <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="#">医生列表</a></li>
+                                        <li><a href="/job/">查看</a></li>
+                                        <li><a href="/job/">发布</a></li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-info"></i> 健康资讯 <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-info"></i> 职业资讯 <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="#">查看</a></li>
-                                        <li><a href="#">发布</a></li>
+                                        <li><a href="/jobnews/">查看</a></li>
+                                        <li><a href="/jobnews/">发布</a></li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-bar-chart"></i> 数据统计 <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="#">统计结果</a></li>
-                                    </ul>
-                                </li>
-                                <li><a><i class="fa fa-android"></i> 自动化工具 <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="#">生成数据</a></li>
-                                        <li><a href="#">心电检测算法集合</a></li>
-                                    </ul>
-                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -139,11 +131,10 @@
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                    aria-expanded="false">
                                     <img src="{{ user.profile.avatar | default:'/static/dashboard/images/dabai.jpg' }}"
-                                         alt="">{{ username | default:"小易" }}
+                                         alt="">{{ request.session.user_name }}
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                    <li><a href="javascript:;">用户资料</a></li>
                                     <li>
                                         <a href="javascript:;">
                                             <!--<span class="badge bg-red pull-right">50%</span> -->
@@ -151,7 +142,7 @@
                                         </a>
                                     </li>
                                     <li><a href="javascript:;">帮助</a></li>
-                                    <li><a href="#"><i class="fa fa-sign-out pull-right"></i>注销</a>
+                                    <li><a href="/elogout/"><i class="fa fa-sign-out pull-right"></i>退出</a>
                                     </li>
                                 </ul>
                             </li>
@@ -171,7 +162,7 @@
                                                 <span class="image"><img src="/static/dashboard/images/dabai.jpg"
                                                                          alt="Profile Image"/></span>
                                                 <span>
-                          <span>{{ user.username | default:"小易" }}</span>
+                          <span>{{ request.session.user_name }}</span>
                           <span class="time">3分钟前</span>
                         </span>
                                                 <span class="message">
@@ -184,7 +175,7 @@
                                                 <span class="image"><img src="/static/dashboard/images/dabai.jpg"
                                                                          alt="Profile Image"/></span>
                                                 <span>
-                          <span>{{ user.username | default:"小易" }}</span>
+                          <span>http://127.0.0.1:8000/ad_userinfo/</span>
                           <span class="time">3分钟前</span>
                         </span>
                                                 <span class="message">
