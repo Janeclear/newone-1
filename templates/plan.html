@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'ecg_user_base.html' %}
 {% block title %}成长计划{% endblock %}
 
 {%load static  %}
@@ -7,105 +7,124 @@
 {% endblock %}
 
 {% block content %}
-    <h2 align="center">你好,{{ request.session.user_name }}这是你的职业成长计划</h2>
-    <form style="margin-left: 300px" class="form-plan" action="/plan/" method="get">
 
-            <div class="form-group">
-                <div class="yihang">
-                    <p>用户名：</p>
+<div class="right_col" role="main">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h1>成长计划 </h1>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="yihang">
-                    {{ plan_form.name }}
-                </div>
-            </div>
+                <div class="x_content" style="font-size: 16px">
 
-            <div class="form-group">
-                <div class="yihang">
-                    <p>计划1：</p>
-                </div>
-                <div class="yihang">
-                    {{ plan_form.plan1}}
-                </div>
-            </div>
+                    <form style="margin-left: 300px" class="form-plan" action="/plan/" method="get">
+                        <h2 >你好,{{ request.session.user_name }}，这是你的职业成长计划</h2>
+                        <br>
 
-            <div class="form-group">
-                <div class="yihang">
-                    <p>计划2：</p>
-                </div>
-                <div class="yihang">
-                    {{ plan_form.plan2}}
-                </div>
-            </div>
+                        <div class="form-group">
+                            <div class="yihang">
+                                <p>用户名：</p>
+                            </div>
+                            <div class="yihang">
+                                {{ plan_form.name }}
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                <div class="yihang">
-                    <p>计划3：</p>
-                </div>
-                <div class="yihang">
-                    {{ plan_form.plan3}}
-                </div>
-            </div>
-        <br>
-        <br>
-        <h2 align="center">成长计划实施记录</h2>
+                        <div class="form-group">
+                            <div class="yihang">
+                                <p>计划1：</p>
+                            </div>
+                            <div class="yihang">
+                                {{ plan_form.plan1}}
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                <div class="yihang">
-                    <p>计划1执行进度：</p>
-                </div>
-                <div class="yihang">
-                    {{ plan_done_form.plan1_progress }}
+                        <div class="form-group">
+                            <div class="yihang">
+                                <p>计划2：</p>
+                            </div>
+                            <div class="yihang">
+                                {{ plan_form.plan2}}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="yihang">
+                                <p>计划3：</p>
+                            </div>
+                            <div class="yihang">
+                                {{ plan_form.plan3}}
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <h2>成长计划实施记录</h2>
+                        <br>
+                        <div class="form-group">
+                            <div class="yihang">
+                                <p>计划1执行进度：</p>
+                            </div>
+                            <div class="yihang">
+                                {{ plan_done_form.plan1_progress }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="yihang">
+                                <p>计划1学习日志：</p>
+                            </div>
+                            <div class="yihang">
+                                {{ plan_done_form.plan1_learning_log }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="yihang">
+                                <p>计划2执行进度：</p>
+                            </div>
+                            <div class="yihang">
+                                {{ plan_done_form.plan2_progress }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="yihang">
+                                <p>计划2学习日志：</p>
+                            </div>
+                            <div class="yihang">
+                                {{ plan_done_form.plan2_learning_log }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="yihang">
+                                <p>计划3执行进度：</p>
+                            </div>
+                            <div class="yihang">
+                                {{ plan_done_form.plan3_progress }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="yihang">
+                                <p>计划3学习日志：</p>
+                            </div>
+                            <div class="yihang">
+                                {{ plan_done_form.plan3_learning_log }}
+                            </div>
+                        </div>
+
+                        <br>
+                        <li><a style="color: cornflowerblue; font-size: 16px;text-align: center" href="/plan_done/">记录计划执行进度</a></li>
+
+
+
+                        </form>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="yihang">
-                    <p>计划1学习日志：</p>
-                </div>
-                <div class="yihang">
-                    {{ plan_done_form.plan1_learning_log }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="yihang">
-                    <p>计划2执行进度：</p>
-                </div>
-                <div class="yihang">
-                    {{ plan_done_form.plan2_progress }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="yihang">
-                    <p>计划2学习日志：</p>
-                </div>
-                <div class="yihang">
-                    {{ plan_done_form.plan2_learning_log }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="yihang">
-                    <p>计划3执行进度：</p>
-                </div>
-                <div class="yihang">
-                    {{ plan_done_form.plan3_progress }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="yihang">
-                    <p>计划3学习日志：</p>
-                </div>
-                <div class="yihang">
-                    {{ plan_done_form.plan3_learning_log }}
-                </div>
-            </div>
+         </div>
+    </div>
+</div>
 
 
 
 
-            <br>
-            <br>
-            <li><a style="color: white; font-size: 16px" href="/plan_done/">记录计划执行进度</a></li>
-        </form>
-    <br>
 
 {% endblock %}
 

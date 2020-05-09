@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'ecg_user_base.html' %}
 {%load static  %}
 <link rel="stylesheet" href="{% static 'CSS/selfinfo.css' %}">
 {% block title %}职业助手{% endblock %}
@@ -8,14 +8,11 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_title">
-                            <h2 align="center">职业推荐</h2>
+                            <h1>职业推荐</h1>
                             <div class="clearfix"></div>
                         </div>
-                        <hr align="center" width="80%">
-                        <div class="x_content">
-                            <p class="text-muted font-13 m-b-30">
+                        <div class="x_content" style="font-size: 16px">
 
-                            </p>
                             <table align="center" id="datatable" class="table table-striped table-bordered">
 
                                 <tbody>
@@ -42,7 +39,7 @@
                                                     <p>性格要求：{{job_form.character}}</p>
                                                     <!--<p><a class="btn" href="#">详情 »</a></p>-->
                                                 </div>
-                                                {% endfor %}
+                                            {% endfor %}
                                         </td>
                                     </tr>
                                 </tbody>

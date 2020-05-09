@@ -1,37 +1,28 @@
-{% extends 'base.html' %}
+{% extends 'ecg_user_base.html' %}
 {% block title %}职业信息详情{% endblock %}
 {%load static  %}
 {% block css %}
     <link rel="stylesheet" href="{% static 'CSS/job.css' %}">
 {% endblock %}
-<style>
-div
-{
-text-align:center;
-border:2px solid #a1a1a1;
-padding:10px 40px;
-background:#dddddd;
-width:350px;
-border-radius:25px;
--moz-border-radius:25px; /* 老的 Firefox */
-}
-</style>
 {% block content %}
     <div align="center">
         <h3>职业详情</h3>
     </div>
     <hr align="center" width="80%" >
-    <div style="margin:60px 120px; width: 80%; border-radius:9px; background:#bce8f1; border-color: #555555">
-        <h4>{{ job_form.job_name }}</h4>
-        <p>职业描述</p>
-        <p>{{ job_form.description }}</p>
-        <p>任职资格</p>
-        <p>{{ job_form.requirement }}</p>
-        <p>薪资水平</p>
-        <p>{{ job_form.salary }}</p>
-        <p>性格要求</p>
-        <p>{{ job_form.character }}</p>
+    <div style="margin-left:18%; width: 76%; border-radius:9px; background:#bce8f1; border-color: #555555">
+        <br>
+        <div style="font-size: 16px" style="margin: 20px">
+            <h4>{{ job_form.job_name }}</h4>
+            <p>职业描述</p>
+            <p>{{ job_form.description }}</p>
+            <p>任职资格</p>
+            <p>{{ job_form.requirement }}</p>
+            <p>薪资水平</p>
+            <p>{{ job_form.salary }}</p>
+            <p>性格要求</p>
+            <p>{{ job_form.character }}</p>
 
-        <p><a style="font-size: 18px" class="btn" href="/jobinfo/">返回>></a></p>
+            <p><a style="font-size: 18px" class="btn" href="/jobinfo/">返回>></a></p>
+        </div>
     </div>
 {% endblock %}

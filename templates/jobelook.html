@@ -1,32 +1,24 @@
 {% extends 'ecg_expert_base.html' %}
+{% block title %}职业信息{% endblock %}
 {%load static  %}
 {% block css %}
     <link rel="stylesheet" href="{% static 'CSS/job.css' %}">
 {% endblock %}
 
 {% block content %}
-
-    {% if message %}
-        <div class="alert alert-warning">{{ message }}</div>
-    {% endif %}
     <!--在这里显示已有职业信息，下面设置新增职业按钮可以增加新的职业信息 -->
     <div class="right_col" role="main">
+    <div class="">
+
+    <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h1>职业信息 </h1>
+                    <h1>职业信息列表 </h1>
                     <div class="clearfix"></div>
                 </div>
-
-                {% csrf_token %}
-                <br> <br> <br>
-
-                <div align="center">
-                    <h3>职业信息列表</h3>
-                </div>
-                <hr align="center" width="80%">
-                <table style="margin: 20px 20px; font-size: medium">
+                <table id="datatable" class="table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th style="width: 4%; height: auto">序号</th>
@@ -35,6 +27,7 @@
                                 <th style="width: 30%; height: auto">任职资格</th>
                                 <th style="width: 8%; height: auto">薪资水平</th>
                                 <th style="width: 10%; height: auto">性格要求</th>
+                                <th style="width: 10%; height: auto">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,5 +49,24 @@
             </div>
          </div>
     </div>
+    </div>
 </div>
+{% endblock %}
+{% block js-list %}
+{{ block.super }}
+<script src="/static/dashboard3/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="/static/dashboard3/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script src="/static/dashboard3/vendors/jszip/dist/jszip.js"></script>
+<script src="/static/dashboard3/vendors/pdfmake/build/pdfmake.js"></script>
+<script src="/static/dashboard3/vendors/pdfmake/build/vfs_fonts.js"></script>
 {% endblock %}
