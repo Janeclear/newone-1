@@ -28,11 +28,40 @@ class SelfinfoForm(forms.Form):
         ('10000以上', '10000以上'),
     )
 
+    hobbies = (
+        ('常规型', '常规型'),
+        ('艺术型', '艺术型'),
+        ('实践型', '实践型'),
+        ('社会型', '社会型'),
+        ('研究型', '研究型'),
+        ('管理型', '管理型'),
+    )
+
     gender = (
         ('男', '男'),
         #('female', '女'),
         ('女', '女'),
     )
+
+    personalities = (
+        ('ISTJ稽查员', 'ISTJ稽查员'),
+        ('ISFJ保护者', 'ISFJ保护者'),
+        ('ISTP操作者/演奏者', 'ISTP操作者/演奏者'),
+        ('ISFP作曲家/艺术家', 'ISFP作曲家/艺术家'),
+        ('INFJ咨询师', 'INFJ咨询师'),
+        ('INFP治疗师/导师', 'INFP治疗师/导师'),
+        ('INTJ智多星/科学家', 'INTJ智多星/科学家'),
+        ('INTP建筑师/设计师', 'INTP建筑师/设计师'),
+        ('ESTJ督导', 'ESTJ督导'),
+        ('ESFJ供给者/销售员', 'ESFJ供给者/销售员'),
+        ('ESTP发起者/创设者', 'ESTP发起者/创设者'),
+        ('ESFP表演者/示范者', 'ESFP表演者/示范者'),
+        ('ENFJ教师', 'ENFJ教师'),
+        ('ENFP倡导者/激发者', 'ENFP倡导者/激发者'),
+        ('ENTJ统帅/调度', 'ENTJ统帅/调度'),
+        ('ENTP发明家', 'ENTP发明家'),
+    )
+
     username = forms.CharField(label="用户名　", max_length=128, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     real_name = forms.CharField(label="姓　名　", max_length=128, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     sex = forms.ChoiceField(label='性　别　', required=False, choices=gender)
@@ -41,12 +70,13 @@ class SelfinfoForm(forms.Form):
     education = forms.ChoiceField(label="学　历　", required=False, choices=educations)
     major = forms.CharField(label="专　业　", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     age = forms.ChoiceField(label="年　龄　", required=False, choices=ages)
+    hobby = forms.ChoiceField(label="职业兴趣类型", required=False, choices=hobbies)
+    personality = forms.ChoiceField(label="性格类型", required=False, choices=personalities)
     expected_salary = forms.ChoiceField(label="期望月薪",required=False, choices=salary)
     home_address = forms.CharField(label="家庭住址", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))
     certificate_or_skills = forms.CharField(label="证书技能", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))
     professional_history = forms.CharField(label="职业经历", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))
     experience = forms.CharField(label="实践经历", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))
-    hobby = forms.CharField(label="兴趣爱好", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))
     selfintroduction = forms.CharField(label="自我介绍", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))
     jobchosen = forms.CharField(label='目标职业', max_length=150, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
@@ -117,11 +147,56 @@ class JobForm(forms.Form):
         ('8000-10000', '8000-10000'),
         ('10000以上', '10000以上'),
     )
+    hobbies = (
+        ('常规型', '常规型'),
+        ('艺术型', '艺术型'),
+        ('企业型', '企业型'),
+        ('社会型', '社会型'),
+        ('研究型', '研究型'),
+        ('管理型', '管理型'),
+    )
+    personalities = (
+        ('ISTJ稽查员', 'ISTJ稽查员'),
+        ('ISFJ保护者', 'ISFJ保护者'),
+        ('ISTP操作者/演奏者', 'ISTP操作者/演奏者'),
+        ('ISFP作曲家/艺术家', 'ISFP作曲家/艺术家'),
+        ('INFJ咨询师', 'INFJ咨询师'),
+        ('INFP治疗师/导师', 'INFP治疗师/导师'),
+        ('INTJ智多星/科学家', 'INTJ智多星/科学家'),
+        ('INTP建筑师/设计师', 'INTP建筑师/设计师'),
+        ('ESTJ督导', 'ESTJ督导'),
+        ('ESFJ供给者/销售员', 'ESFJ供给者/销售员'),
+        ('ESTP发起者/创设者', 'ESTP发起者/创设者'),
+        ('ESFP表演者/示范者', 'ESFP表演者/示范者'),
+        ('ENFJ教师', 'ENFJ教师'),
+        ('ENFP倡导者/激发者', 'ENFP倡导者/激发者'),
+        ('ENTJ统帅/调度', 'ENTJ统帅/调度'),
+        ('ENTP发明家', 'ENTP发明家'),
+    )
+    educations = (
+        ('中专及以下', '中专及以下'),
+        ('大专', '大专'),
+        # ('undergratuate', '本科'),
+        ('本科', '本科'),
+        ('硕士', '硕士'),
+        ('博士及以上', '博士及以上'),
+    )
     job_name = forms.CharField(label="职业名称", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
     description = forms.CharField(label="职业描述", max_length=512, widget=forms.Textarea(attrs={'class': 'form-control'}))
-    requirement = forms.CharField(label="任职资格", max_length=512, widget=forms.Textarea(attrs={'class': 'form-control'}))
+    requirement = forms.CharField(label="任职要求", max_length=512, widget=forms.Textarea(attrs={'class': 'form-control'}))
     salary = forms.ChoiceField(label="薪资水平", choices=job_salary)
-    character = forms.CharField(label="性格要求", max_length=256, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    skill = forms.CharField(label="技能要求", max_length=256, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    experience = forms.CharField(label="职业经历要求", max_length=512, widget=forms.Textarea(attrs={'class': 'form-control'}))
+    degree = forms.ChoiceField(label="最低学历要求", choices=educations)
+    major1 = forms.CharField(label="专业匹配No.1", max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    major2 = forms.CharField(label="专业匹配No.2", max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    major3 = forms.CharField(label="专业匹配No.3", max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    hobby1 = forms.ChoiceField(label="职业兴趣类型匹配No.1", choices=hobbies)
+    hobby2 = forms.ChoiceField(label="职业兴趣类型匹配No.2", choices=hobbies)
+    hobby3 = forms.ChoiceField(label="职业兴趣类型匹配No.3", choices=hobbies)
+    personality1 = forms.ChoiceField(label="性格类型匹配No.1", choices=personalities)
+    personality2 = forms.ChoiceField(label="性格类型匹配No.2", choices=personalities)
+    personality3 = forms.ChoiceField(label="性格类型匹配No.3", choices=personalities)
 
 
 class JobnewsForm(forms.Form):

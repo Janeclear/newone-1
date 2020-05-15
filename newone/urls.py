@@ -17,7 +17,7 @@ from django.conf.urls import *
 from django.contrib import admin
 
 from app1.views import index, login, plan_done, jobinfo, jobnews, jobdetail, jobnews_show, jobnewsdetail, alogout, \
-    add_expert, eselfinfo, auserinfo, login_base, jobelook
+    add_expert, eselfinfo, auserinfo, login_base, jobelook, e_newscheck
 from app1.views import plan,alogin,admin_eu,userinfo_test
 from app1.views import register01, selfinfo, logout, careerhelper
 from app1.views import base, Introduction, selfinfo_done, career
@@ -30,20 +30,15 @@ from app1 import views
 
 urlpatterns = (
     url(r'^admin/', admin.site.urls),
-
     url(r'^login/', login),
-
     url(r'^index/', index),
-
     url(r'^login02/', login02),
     url(r'^login_a', login_a),
     url(r'^logout', logout),
     url(r'^elogout', elogout),
     url(r'alogout', alogout),
-
     url(r'^register01/', register01),
     url(r'^base/', base),
-
     url(r'^testdb$', testdb.testdb),
     url(r'^selfinfo/', selfinfo),
     url(r'^selfinfo_done/', selfinfo_done),
@@ -70,7 +65,8 @@ urlpatterns = (
     url(r'^userinfo_test', userinfo_test),
     url(r'^auserinfo', auserinfo),
     url(r'^login_base', login_base),
-    url(r'^jobelook', jobelook),
+    url(r'^jobelook', jobelook),#专家-职业信息查看
+    url(r'^e_newscheck', e_newscheck),#专家-咨询查看
     #url(r'^remove_userinfo(?P<nid>\d+)/',views.removeuserinfo,name='reinfo'),
     # index
     # logout

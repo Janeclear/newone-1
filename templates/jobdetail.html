@@ -15,12 +15,18 @@
             <h4>{{ job_form.job_name }}</h4>
             <p>职业描述</p>
             <p>{{ job_form.description }}</p>
-            <p>任职资格</p>
+            <p>任职要求</p>
             <p>{{ job_form.requirement }}</p>
+            <p>教育背景要求</p>
+            <p>学历：{{ job_form.degree }} <br> 专业：{{ job_form.major1 }}/{{ job_form.major2 }}/{{ job_form.major3 }}</p>
+            <p>职业兴趣与性格</p>
+            <p>职业兴趣类型：{{ job_form.hobby1 }}/{{ job_form.hobby2 }}/{{ job_form.hobby3 }} <br> 性格类型：{{ job_form.personality1 }}/{{ job_form.personality2 }}/{{ job_form.personality3 }}</p>
             <p>薪资水平</p>
             <p>{{ job_form.salary }}</p>
-            <p>性格要求</p>
-            <p>{{ job_form.character }}</p>
+            <p>职业技能要求</p>
+            <p>{{ job_form.skill }}</p>
+            <p>职业经历要求</p>
+            <p>{{ job_form.experience }}</p>
 
             <p><a style="font-size: 18px" class="btn" href="/jobinfo/">返回>></a></p>
         </div>

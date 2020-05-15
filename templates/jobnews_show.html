@@ -5,22 +5,40 @@
     <link rel="stylesheet" href="{% static 'CSS/jobnews.css' %}">
 {% endblock %}
 
-{% block content %}
-    <div align="center">
-        <h3>职业资讯</h3>
-    </div>
-    <hr align="center" width="80%">
-    <div style="border-radius:9px; margin-left: 18%;width: 76%; background: #bce8f1; border-color: #555555;">
 
-        {% for jobnews_form in jobnews_formlist %}
-        <br>
-        <div style="margin: 20px">
-            <h4>{{ jobnews_form.title }}</h4>
-            <p>{{ jobnews_form.c_time }}</p>
-            <p><a style="font-size: 18px" class="btn" href="{% url 'jobnewsdetail' jobnews_form.id%}">查看详情>></a></p>
-        </div>
-        {% endfor %}
+
+{% block content %}
+    <div class="right_col" role="main">
+    <div class="">
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h1>职业资讯列表 </h1>
+                    <div class="clearfix"></div>
+                </div>
+                <div style="font-size: 16px;border-radius:9px; margin-left: 11%;width: 76%; background: #bce8f1; border-color: #555555;">
+                    <br>
+                    {% for jobnews_form in jobnews_formlist %}
+                    <div style="margin: 20px">
+                        <h4>{{ jobnews_form.title }}</h4>
+                        <p>{{ jobnews_form.c_time }}</p>
+                        <p><a style="font-size: 18px" class="btn" href="{% url 'jobnewsdetail' jobnews_form.id%}">查看详情>></a></p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+         </div>
     </div>
+    </div>
+</div>
+
 
 
 {% endblock %}
+
+
+
+

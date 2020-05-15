@@ -135,6 +135,7 @@ def selfinfo(request):
             experience = selfinfo_form.cleaned_data['experience']
             hobby = selfinfo_form.cleaned_data['hobby']
             selfintroduction = selfinfo_form.cleaned_data['selfintroduction']
+            personality = selfinfo_form.cleaned_data['personality']
 
             # 当一切都OK的情况下，创建新信息
             #new_selfinfo = models.Selfinfo.objects.create()
@@ -169,6 +170,8 @@ def selfinfo(request):
                 models.Selfinfo.objects.filter(name=user.name).update(hobby=hobby)
             if selfintroduction != '':
                 models.Selfinfo.objects.filter(name=user.name).update(selfintroduction=selfintroduction)
+            if personality != '':
+                models.Selfinfo.objects.filter(name=user.name).update(personality=personality)
             return redirect('/selfinfo_done/')  # 自动跳转到登录页面
     selfinfo_form = SelfinfoForm()
     return render(request, 'selfinfo.html', locals())
@@ -233,7 +236,7 @@ def careerhelper(request):
     re_jobs = models.Job.objects.filter(Q(job_name__contains=professionalhistory) | Q(job_name__contains=major) | Q(
         description__contains=professionalhistory) | Q(description__contains=selfintroduction) | Q(
         requirement__contains=certificate) | Q(requirement__contains=major) | Q(
-        requirement__contains=selfintroduction) | Q(character__contains=certificate))
+        requirement__contains=selfintroduction) | Q(skill__contains=certificate))
     data = {
         're_jobs': re_jobs
     }
@@ -446,17 +449,40 @@ def job(request):
         job_form = JobForm(request.POST)
         if job_form.is_valid():
             job_name = job_form.cleaned_data['job_name']
+            degree = job_form.cleaned_data['degree']
+            major1 = job_form.cleaned_data['major1']
+            major2 = job_form.cleaned_data['major2']
+            major3 = job_form.cleaned_data['major3']
+            skill = job_form.cleaned_data['skill']
+            hobby1 = job_form.cleaned_data['hobby1']
+            hobby2 = job_form.cleaned_data['hobby2']
+            hobby3 = job_form.cleaned_data['hobby3']
+            personality1 = job_form.cleaned_data['personality1']
+            personality2 = job_form.cleaned_data['personality2']
+            personality3 = job_form.cleaned_data['personality3']
             description = job_form.cleaned_data['description']
             requirement = job_form.cleaned_data['requirement']
             salary = job_form.cleaned_data['salary']
-            character = job_form.cleaned_data['character']
+            experience = job_form.cleaned_data['experience']
 
             new_job = models.Job.objects.create()
             new_job.job_name = job_name
+            new_job.degree = degree
+            new_job.major1 = major1
+            new_job.major2 = major2
+            new_job.major3 = major3
+            new_job.skill = skill
+            new_job.hobby1 = hobby1
+            new_job.hobby2 = hobby2
+            new_job.hobby3 = hobby3
+            new_job.personality1 = personality1
+            new_job.personality2 = personality2
+            new_job.personality3 = personality3
             new_job.description = description
             new_job.requirement = requirement
+            new_job.experience = experience
             new_job.salary = salary
-            new_job.character = character
+
             new_job.save()
             return redirect('/job/')
     job_form = JobForm()
@@ -575,3 +601,11 @@ def jobelook(request):
         "job_formlist": job_formlist
     }
     return render(request,'jobelook.html',context=data)
+
+
+def e_newscheck(request):
+    jobnews_formlist = models.Jobnews.objects.all()
+    data = {
+        "jobnews_formlist": jobnews_formlist,
+    }
+    return render(request, 'e_newscheck.html',context=data)

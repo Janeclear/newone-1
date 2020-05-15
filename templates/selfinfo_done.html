@@ -2,9 +2,7 @@
 {% block title %}个人信息{% endblock %}
 
 {%load static  %}
-{% block css %}
-    <link rel="stylesheet" href="{% static 'CSS/selfinfo.css' %}">
-{% endblock %}
+
 
 {% block content %}
     <div class="right_col" role="main">
@@ -22,87 +20,68 @@
                             <div>
                                 <p>用户：{{ selfinfo_form.name }}</p>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="yihang">
-                                <p>姓名：{{ selfinfo_form.real_name }}　　　　</p>
-
+                            <div>
+                                <p>姓名：{{ selfinfo_form.real_name }}</p>
                             </div>
 
-                            <div class="yihang">
+                            <div>
                                 <p>性别：{{ selfinfo_form.sex }}</p>
                             </div>
-                        </div>
 
-                        <div class="form-group">
                             <div class="yihang">
-                                <p>手机号码：{{ selfinfo_form.phone_number}}　　　</p>
+                                <p>手机号码：{{ selfinfo_form.phone_number}}</p>
                             </div>
 
-                            <div class="yihang">
+                            <div>
                                 <p>邮箱地址：{{ selfinfo_form.email}}</p>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="yihang">
-                                <p>学历：{{ selfinfo_form.education}}　　　　</p>
+                            <div>
+                                <p>学历：{{ selfinfo_form.education}}</p>
                             </div>
 
-                            <div class="yihang">
+                            <div>
                                 <p>专业：{{ selfinfo_form.major}}</p>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="yihang">
-                                <p>年龄：{{ selfinfo_form.age}}　　　　</p>
+                            <div>
+                                <p>年龄：{{ selfinfo_form.age}}</p>
+                            </div>
+                            <div>
+                                <p>职业兴趣类型：{{ selfinfo_form.hobby}}</p>
+                            </div>
+                            <div>
+                                <p>性格类型：{{ selfinfo_form.personality}}</p>
                             </div>
 
-                            <div class="yihang">
+                            <div>
                                 <p>期望月薪：{{ selfinfo_form.expected_salary}}</p>
                             </div>
 
-                        </div>
-                        <div class="form-group">
-                            <div class="yihang">
+                            <div>
                                 <p>家庭住址：{{ selfinfo_form.home_address}}</p>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="yihang">
+                            <div>
                                 <p>证书技能：{{ selfinfo_form.certificate_or_skills}}</p>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="yihang">
+
+                            <div>
                                 <p>职业经历：{{ selfinfo_form.professional_history}}</p>
                             </div>
 
-                        </div>
-                        <div class="form-group">
-                            <div class="yihang">
+                            <div>
                                 <p>实践经历：{{ selfinfo_form.experience}}</p>
                             </div>
 
-                        </div>
 
-                        <div class="form-group">
-                            <div class="yihang">
-                                <p>兴趣爱好：{{ selfinfo_form.hobby}}</p>
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="yihang">
+                            <div>
                                 <p>自我介绍：{{ selfinfo_form.selfintroduction}}</p>
 
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="yihang">
+
+                            <div>
                                 <p>目标职业：{{ selfinfo_form.jobchosen}}</p>
 
                             </div>

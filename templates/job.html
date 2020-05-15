@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block content %}
-
     {% if message %}
         <div class="alert alert-warning">{{ message }}</div>
     {% endif %}
@@ -22,28 +21,73 @@
                 <form class="form-job" action="/job/" method="post">
                 {% csrf_token %}
 
-                    <div  style="width: 60%; margin-left: 16%; font-size: 18px">
-                            <div class="form-group">
-                                {{ job_form.job_name.label_tag }}
-                                {{ job_form.job_name }}
-                            </div>
-                            <div class="form-group">
-                                {{ job_form.description.label_tag }}
-                                {{ job_form.description }}
-                            </div>
-                            <div class="form-group">
-                                {{ job_form.requirement.label_tag }}
-                                {{ job_form.requirement }}
-                            </div>
-                            <div class="form-group">
-                                {{ job_form.salary.label_tag }}
-                                {{ job_form.salary }}
-                            </div>
-                            <div class="form-group">
-                                {{ job_form.character.label_tag }}
-                                {{ job_form.character }}
-                            </div>
-                            <br>
+                    <div  style="width: 60%; margin-left: 16%; font-size: 17px">
+                        <div class="form-group">
+                            {{ job_form.job_name.label_tag }}
+                            {{ job_form.job_name }}
+                        </div>
+                        <div class="form-group">
+                            {{ job_form.degree.label_tag }}
+                            {{ job_form.degree }}
+                        </div>
+                        <div class="form-group">
+                            {{ job_form.major1.label_tag }}
+                            {{ job_form.major1 }}
+                        </div>
+                        <div class="form-group">
+                            {{ job_form.major2.label_tag }}
+                            {{ job_form.major2 }}
+                        </div>
+                        <div class="form-group">
+                            {{ job_form.major3.label_tag }}
+                            {{ job_form.major3 }}
+                        </div>
+                        <div class="form-group">
+                            {{ job_form.skill.label_tag }}
+                            {{ job_form.skill }}
+                        </div>
+                        <div class="form-group">
+                            {{ job_form.hobby1.label_tag }}
+                            {{ job_form.hobby1 }}
+                        </div>
+                        <div class="form-group">
+                            {{ job_form.hobby2.label_tag }}
+                            {{ job_form.hobby2 }}
+                        </div>
+                        <div class="form-group">
+                            {{ job_form.hobby3.label_tag }}
+                            {{ job_form.hobby3 }}
+                        </div>
+                        <div class="form-group">
+                            {{ job_form.personality1.label_tag }}
+                            {{ job_form.personality1 }}
+                        </div>
+                        <div class="form-group">
+                            {{ job_form.personality2.label_tag }}
+                            {{ job_form.personality2 }}
+                        </div>
+                        <div class="form-group">
+                            {{ job_form.personality3.label_tag }}
+                            {{ job_form.personality3 }}
+                        </div>
+                        <div class="form-group">
+                            {{ job_form.description.label_tag }}
+                            {{ job_form.description }}
+                        </div>
+                        <div class="form-group">
+                            {{ job_form.requirement.label_tag }}
+                            {{ job_form.requirement }}
+                        </div>
+                        <div class="form-group">
+                            {{ job_form.experience.label_tag }}
+                            {{ job_form.experience }}
+                        </div>
+                        <div class="form-group">
+                            {{ job_form.salary.label_tag }}
+                            {{ job_form.salary }}
+                        </div>
+
+                        <br>
                         <button type="reset" class="button1">重置</button>
                         <button type="submit" class="button1">提交</button>
                     </div>
