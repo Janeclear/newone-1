@@ -10,15 +10,71 @@ from django import forms
 from .static.forms import UserForm
 from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+import re
 from django.contrib import messages
+
 # Create your views here.
+
+# careerhelper 的子函数们
+pattern = r',|\.|/|;|\'|`|\[|\]|<|>|\?|:|"|\{|\}|\~|!|@|#|\$|%|\^|&|\(|\)|-|=|\_|\+|，|。|、|；|‘|’|【|】|·|！| |…|（|）'
+
+
+def cutcompare(txt, sth, score):
+    result_list = re.split(pattern, txt)
+    for result in result_list:
+        if result in sth:
+            score += 2
+        print(result)
+    return score
+
+
+def edu_to_score(edu):  # 被eduscore引用
+    global escore
+    if edu == '中专及以下':
+        escore = 0
+    elif edu == '大专':
+        escore = 1
+    elif edu == '本科':
+        escore = 2
+    elif edu == '硕士':
+        escore = 3
+    elif edu == '博士及以上':
+        escore = 4
+    return escore
+
+
+def eduscore(education, degree, major, major1, major2, major3, score):
+    # 先处理degree学历
+    if edu_to_score(education) >= edu_to_score(degree):
+        score += 3
+    # 专业匹配
+    if major in major1:
+        score += 3
+    elif major in major2:
+        score += 2
+    elif major in major3:
+        score += 1
+    return score
+
+
+def personalityscore(hobby, hobby1, hobby2, hobby3, score):  # 可用于hobby也可用于personality
+    if hobby == hobby1:
+        score += 3
+    if hobby == hobby2:
+        score += 2
+    if hobby == hobby3:
+        score += 1
+    return score
+
+
+# careerhelper 的子函数们
 
 
 def index(request):  # request是什么？
     pass
     return render(request, 'index.html')  # 返回结果给浏览器
 
-# 改名
+
 def login(request):
     global user
     if request.session.get('is_login', None):
@@ -35,7 +91,7 @@ def login(request):
                     request.session['is_login'] = True
                     request.session['user_id'] = user.id
                     request.session['user_name'] = user.name
-                    #及时创建计划，先只填名字，后来再改
+                    # 及时创建计划，先只填名字，后来再改
 
                     return redirect("/index/")
                 else:
@@ -46,12 +102,6 @@ def login(request):
 
     login_form = UserForm()
     return render(request, 'login.html', locals())
-
-
-# def register(request):
-#    pass
-#    return render(request, 'register.html')
-
 
 
 def logout(request):
@@ -65,26 +115,23 @@ def logout(request):
     # del request.session['user_name']
     return redirect("/login/")
 
+
 def elogout(request):
     if not request.session.get('is_login', None):
         return redirect("/elogin/")
     request.session.flush()
     return redirect("/elogin/")
 
+
 def alogout(request):
-    if not request.session.get('is_login',None):
+    if not request.session.get('is_login', None):
         return render("/alogin/")
     request.session.flush()
     return redirect("/alogin/")
 
 
-def base(request):
-    pass
-    return redirect('/base/')
-
-
 def planmaking(request):
-    if request.method =="POST":
+    if request.method == "POST":
         plan_form = PlanForm(request.POST)
         if plan_form.is_valid():
             username = plan_form.cleaned_data['username']
@@ -92,13 +139,6 @@ def planmaking(request):
             plan2 = plan_form.cleaned_data['plan2']
             plan3 = plan_form.cleaned_data['plan3']
 
-            #new_plan = models.Plan.objects.create()
-            #new_plan.name = username
-            #new_plan.plan1 = plan1
-            #new_plan.plan2 = plan2
-            #new_plan.plan3 = plan3
-            #new_plan.save()
-            #已经new过了只需要update就行
             if plan1 != '':
                 models.Plan.objects.filter(name=username).update(plan1=plan1)
                 models.Plandone.objects.filter(name=username).update(plan1_progress=0, plan1_learning_log='暂无记录')
@@ -137,17 +177,12 @@ def selfinfo(request):
             selfintroduction = selfinfo_form.cleaned_data['selfintroduction']
             personality = selfinfo_form.cleaned_data['personality']
 
-            # 当一切都OK的情况下，创建新信息
-            #new_selfinfo = models.Selfinfo.objects.create()
-            #new_selfinfo.name = username
-            #new_selfinfo.real_name = real_name
-            #new_selfinfo.save()
             if real_name != '':
                 models.Selfinfo.objects.filter(name=user.name).update(real_name=real_name)
-            if sex !='':
-                models.Selfinfo.objects.filter(name=user.name).update(sex =sex)
+            if sex != '':
+                models.Selfinfo.objects.filter(name=user.name).update(sex=sex)
             if phone_number != '':
-                models.Selfinfo.objects.filter(name=user.name).update(phone_number= phone_number)
+                models.Selfinfo.objects.filter(name=user.name).update(phone_number=phone_number)
             if email != '':
                 models.Selfinfo.objects.filter(name=user.name).update(email=email)
             if education != '':
@@ -179,8 +214,8 @@ def selfinfo(request):
 
 def eselfinfo(request):
     eselfinfo_forma = models.Euser.objects.get(ename=euser.ename)
-    data={
-        'eselfinfo_forma':eselfinfo_forma
+    data = {
+        'eselfinfo_forma': eselfinfo_forma
     }
     if request.method == "POST":
         eselfinfo_form = EselfinfoForm(request.POST)
@@ -198,11 +233,12 @@ def eselfinfo(request):
                 models.Euser.objects.filter(ename=ename).update(aspect=aspect)
             return redirect('/eselfinfo/')
     eselfinfo_form = EselfinfoForm()
-    return render(request,'eselfinfo.html',locals())
+    return render(request, 'eselfinfo.html', locals())
 
 
 selfinfo_form = SelfinfoForm()
 data = {}
+
 
 def selfinfo_done(request):
     # selfinfo_formlist = models.Selfinfo.objects.all()
@@ -213,30 +249,39 @@ def selfinfo_done(request):
         "selfinfo_form": selfinfo_form
     }
     return render(request, 'selfinfo_done.html', context=data)  # locals() dict_selfinfo
-    # if request.method == "POST":
-    # selfinfo_formlist = models.Test.objects.all()
-    # models.Selfinfo.objects.filter(real_name='王敬莹')
-    # selfinfo_form=RegisterForm
 
-    # selfinfo_form = models.Test.objects.get(name='Jane')
-    # dict_selfinfo['name'] = selfinfo_form.name
-    # dict_selfinfo['email'] = selfinfo_form.eamil
 
-    # pass
-    # return render(request, 'selfinfo_done.html',)#  locals())
-
-#在你的函数前面加上csrf_exempt装饰器
+# 在你的函数前面加上csrf_exempt装饰器
 @csrf_exempt
 def careerhelper(request):
     user_a = models.Selfinfo.objects.get(name=user.name)
-    professionalhistory = user_a.professional_history
-    certificate = user_a.certificate_or_skills
+    education = user_a.education
     major = user_a.major
-    selfintroduction = user_a.selfintroduction
-    re_jobs = models.Job.objects.filter(Q(job_name__contains=professionalhistory) | Q(job_name__contains=major) | Q(
-        description__contains=professionalhistory) | Q(description__contains=selfintroduction) | Q(
-        requirement__contains=certificate) | Q(requirement__contains=major) | Q(
-        requirement__contains=selfintroduction) | Q(skill__contains=certificate))
+    professional_history = user_a.professional_history
+    certificate_or_skills = user_a.certificate_or_skills
+    hobby = user_a.hobby
+    personality = user_a.personality
+
+    joblist = models.Job.objects.all()
+    for job in joblist:
+        job.job_score = 0
+        job.job_score = eduscore(education, job.degree, major, job.major1, job.major2, job.major3,
+                                 score=0) + personalityscore(hobby, job.hobby1, job.hobby2, job.hobby3,
+                                                             score=0) + personalityscore(personality, job.personality1,
+                                                                                         job.personality2,
+                                                                                         job.personality3,
+                                                                                         score=0) + cutcompare(
+            job.skill,certificate_or_skills , score=0) + cutcompare(job.experience, professional_history, score=0)
+        models.Job.objects.filter(job_name=job.job_name).update(job_score=job.job_score)
+    re_jobs = models.Job.objects.filter().order_by('-job_score')[:3]
+
+    # 之前的推荐算法
+    # re_jobs = models.Job.objects.filter(Q(job_name__contains=professional_history) | Q(job_name__contains=major) | Q(
+    #     description__contains=professional_history) | Q(description__contains=selfintroduction) | Q(
+    #     requirement__contains=certificate_or_skills) | Q(requirement__contains=major) | Q(
+    #     requirement__contains=selfintroduction) | Q(skill__contains=certificate_or_skills))
+    # 子函数
+
     data = {
         're_jobs': re_jobs
     }
@@ -246,7 +291,7 @@ def careerhelper(request):
         models.Selfinfo.objects.filter(name=user.name).update(jobchosen=jobchosena)
 
         return redirect('/careerhelper/')
-    return render(request, 'careerhelper.html',locals())
+    return render(request, 'careerhelper.html', locals())
 
 
 def register01(request):
@@ -283,19 +328,18 @@ def register01(request):
                 new_user.sex = sex
                 new_user.save()
                 new_plan = models.Plan.objects.create()
-                new_plan.name= username
+                new_plan.name = username
                 new_plan.save()
-                #注册时创建一条个人信息表数据，只保存下用户名字段，其他不填
+                # 注册时创建一条个人信息表数据，只保存下用户名字段，其他不填
                 new_selfinfo = models.Selfinfo.objects.create()
                 new_selfinfo.name = username
                 new_selfinfo.sex = sex
                 new_selfinfo.email = email
                 new_selfinfo.save()
-                #注册时也创建一条计划进度数据，只保存下用户名字段，其他不填
+                # 注册时也创建一条计划进度数据，只保存下用户名字段，其他不填
                 new_plandone = models.Plandone.objects.create()
                 new_plandone.name = username
                 new_plandone.save()
-
 
                 return redirect('/login/')  # 自动跳转到登录页面
     register_form = RegisterForm()
@@ -310,7 +354,6 @@ def Introduction(request):
 def career(request):
     pass
     return render(request, 'career.html')
-
 
 
 def elogin(request):
@@ -363,7 +406,7 @@ def alogin(request):
         return render(request, 'alogin.html', locals())
 
     alogin_form = UserForm()
-    return render(request,'alogin.html',locals())
+    return render(request, 'alogin.html', locals())
 
 
 def ad_userinfo(request):
@@ -373,9 +416,10 @@ def ad_userinfo(request):
     data = {
         "selfinfo_formlist": selfinfo_formlist,
         "plan_formlist": plan_formlist,
-        "plan_done_formlist":plan_done_formlist
+        "plan_done_formlist": plan_done_formlist
     }
-    return render(request, 'ad_userinfo.html',context=data)
+    return render(request, 'ad_userinfo.html', context=data)
+
 
 def admin_eu(request):
     selfinfo_formlist = models.Selfinfo.objects.all()
@@ -391,17 +435,19 @@ def admin_eu(request):
         models.Selfinfo.objects.filter(name=uname).update(expert=ename)
         models.Plandone.objects.filter(name=uname).update(expert=ename)
         models.Plan.objects.filter(name=uname).update(expert=ename)
-        models.Euser.objects.filter(ename=ename).update(usernumber=F('usernumber')+1)
+        models.Euser.objects.filter(ename=ename).update(usernumber=F('usernumber') + 1)
 
         return redirect('/admin_eu/')
 
-    return render(request,'admin_eu.html',context=data)
+    return render(request, 'admin_eu.html', context=data)
 
 
-data_p={}
+data_p = {}
+
+
 def plan(request):
-    plan_form = models.Plan.objects.get(name= user.name)
-    plan_done_form = models.Plandone.objects.get(name= user.name)
+    plan_form = models.Plan.objects.get(name=user.name)
+    plan_done_form = models.Plandone.objects.get(name=user.name)
     data_p = {
         "plan_form": plan_form,
         "plan_done_form": plan_done_form
@@ -411,10 +457,10 @@ def plan(request):
 
 def plan_done(request):
     if request.method == "POST":
-        #print('有POST')
+        # print('有POST')
         plan_done_form = PlandoneForm(request.POST)
         if plan_done_form.is_valid():
-            #print('有valid判断') 是因为没有设置username required = False
+            # print('有valid判断') 是因为没有设置username required = False
             plan1_progress = plan_done_form.cleaned_data['plan1_progress']
             plan1_learning_log = plan_done_form.cleaned_data['plan1_learning_log']
             plan2_progress = plan_done_form.cleaned_data['plan2_progress']
@@ -434,14 +480,14 @@ def plan_done(request):
                 models.Plandone.objects.filter(name=user.name).update(plan3_progress=plan3_progress)
             if plan3_learning_log != '':
                 models.Plandone.objects.filter(name=user.name).update(plan3_learning_log=plan3_learning_log)
-            #print('有修改')
+            # print('有修改')
             return redirect('/plan/')
     plan_done_form = PlandoneForm()
     plan_form = models.Plan.objects.get(name=user.name)
     data = {
         "plan_form": plan_form
     }
-    return render(request,  'plan_done.html',locals())#context=data
+    return render(request, 'plan_done.html', locals())  # context=data
 
 
 def job(request):
@@ -533,31 +579,30 @@ def jobinfo(request):
 def jobnews_show(request):
     jobnews_formlist = models.Jobnews.objects.all().order_by('-c_time')
     data = {
-        "jobnews_formlist":jobnews_formlist
+        "jobnews_formlist": jobnews_formlist
     }
-    return render(request,'jobnews_show.html', locals() )
+    return render(request, 'jobnews_show.html', locals())
 
 
-def jobdetail(request,nid):
+def jobdetail(request, nid):
     job_form = models.Job.objects.get(id=nid)
     data = {
-        'job_form':job_form
+        'job_form': job_form
     }
-    return render(request, 'jobdetail.html',locals())
+    return render(request, 'jobdetail.html', locals())
 
 
-def jobnewsdetail(request,nid):
+def jobnewsdetail(request, nid):
     jobnews_form = models.Jobnews.objects.get(id=nid)
     data = {
-        'jobnews_form':jobnews_form
+        'jobnews_form': jobnews_form
     }
-    return render(request, 'jobnewsdetail.html',locals())
+    return render(request, 'jobnewsdetail.html', locals())
 
 
 def deletejob(request, nid):
     models.Job.objects.filter(id=nid).delete()
     return redirect('/job/')
-
 
 
 def login02(request):
@@ -576,12 +621,13 @@ def login_a(request):
     # """
     return render(request, 'login.html')
 
+
 def userinfo_test(request):
     eselfinfo_formlist = models.Euser.objects.all()
     data = {
         "eselfinfo_formlist": eselfinfo_formlist,
     }
-    return render(request, 'userinfo_test.html',context=data)
+    return render(request, 'userinfo_test.html', context=data)
 
 
 def auserinfo(request):
@@ -589,18 +635,20 @@ def auserinfo(request):
     data = {
         "selfinfo_formlist": selfinfo_formlist,
     }
-    return render(request, 'auserinfo.html',context=data)
+    return render(request, 'auserinfo.html', context=data)
+
 
 def login_base(request):
     pass
-    return render(request,'login_base.html')
+    return render(request, 'login_base.html')
+
 
 def jobelook(request):
     job_formlist = models.Job.objects.all()
     data = {
         "job_formlist": job_formlist
     }
-    return render(request,'jobelook.html',context=data)
+    return render(request, 'jobelook.html', context=data)
 
 
 def e_newscheck(request):
@@ -608,4 +656,9 @@ def e_newscheck(request):
     data = {
         "jobnews_formlist": jobnews_formlist,
     }
-    return render(request, 'e_newscheck.html',context=data)
+    return render(request, 'e_newscheck.html', context=data)
+
+
+def base(request):
+    pass
+    return redirect('/base/')

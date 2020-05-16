@@ -27,7 +27,6 @@ class SelfinfoForm(forms.Form):
         ('8000-10000', '8000-10000'),
         ('10000以上', '10000以上'),
     )
-
     hobbies = (
         ('常规型', '常规型'),
         ('艺术型', '艺术型'),
@@ -36,13 +35,11 @@ class SelfinfoForm(forms.Form):
         ('研究型', '研究型'),
         ('管理型', '管理型'),
     )
-
     gender = (
         ('男', '男'),
         #('female', '女'),
         ('女', '女'),
     )
-
     personalities = (
         ('ISTJ稽查员', 'ISTJ稽查员'),
         ('ISFJ保护者', 'ISFJ保护者'),
@@ -79,64 +76,6 @@ class SelfinfoForm(forms.Form):
     experience = forms.CharField(label="实践经历", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))
     selfintroduction = forms.CharField(label="自我介绍", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))
     jobchosen = forms.CharField(label='目标职业', max_length=150, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-
-
-class EselfinfoForm(forms.Form):
-    gender = (
-        ('男', '男'),
-        ('女', '女'),
-    )
-    ename = forms.CharField(label="用户名　", max_length=128, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    sex = forms.ChoiceField(label='性　别　', required=False, choices=gender)
-    email = forms.EmailField(label="邮箱地址", required=False,  widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    aspect = forms.CharField(label="擅长领域", max_length=128, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-
-
-class UserForm(forms.Form):
-    username = forms.CharField(label="用户名", max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    password = forms.CharField(label="密　码", max_length=256, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-
-
-#class AuserForm(forms.Form):
-# 没用，重复了
-#    username = forms.CharField(label="用户名", max_length=128, widget=forms.TextInput(attrs={'class':'form-control'}))
-#    password = forms.CharField(label="密码", max_length=128, widget=forms.PasswordInput(attrs={'class':'form-control'}))
-
-
-class RegisterForm(forms.Form):
-    gender = (
-        ('男', "男"),
-        ('女', "女"),
-    )
-    username = forms.CharField(label="用户名　", max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    password1 = forms.CharField(label="密　码　", max_length=256, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    password2 = forms.CharField(label="确认密码", max_length=256, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(label="邮箱地址", widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    sex = forms.ChoiceField(label='性　别　', choices=gender)
-
-
-class PlanForm(forms.Form):
-    username = forms.CharField(label="用户名　", max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    plan1 = forms.CharField(label="计划1", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    plan2 = forms.CharField(label="计划2", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    plan3 = forms.CharField(label="计划3", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-
-
-class PlandoneForm(forms.Form):
-    percent = (
-        ('0', '未开始'),
-        ('25%', '完成了1/4'),
-        ('50%', '完成了一半'),
-        ('75%', '完成了3/4'),
-        ('100%', '全部完成'),
-    )
-    username = forms.CharField(label="用户名　", required=False, max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    plan1_progress = forms.ChoiceField(label="计划1执行进度",required=False, choices=percent)
-    plan1_learning_log = forms.CharField(label="计划1学习日志", max_length=1024, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))
-    plan2_progress = forms.ChoiceField(label="计划2执行进度", required=False, choices=percent)
-    plan2_learning_log = forms.CharField(label="计划2学习日志", max_length=1024, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))
-    plan3_progress = forms.ChoiceField(label="计划3执行进度", required=False, choices=percent)
-    plan3_learning_log = forms.CharField(label="计划3学习日志", max_length=1024, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))
 
 
 class JobForm(forms.Form):
@@ -197,6 +136,58 @@ class JobForm(forms.Form):
     personality1 = forms.ChoiceField(label="性格类型匹配No.1", choices=personalities)
     personality2 = forms.ChoiceField(label="性格类型匹配No.2", choices=personalities)
     personality3 = forms.ChoiceField(label="性格类型匹配No.3", choices=personalities)
+
+
+class EselfinfoForm(forms.Form):
+    gender = (
+        ('男', '男'),
+        ('女', '女'),
+    )
+    ename = forms.CharField(label="用户名　", max_length=128, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    sex = forms.ChoiceField(label='性　别　', required=False, choices=gender)
+    email = forms.EmailField(label="邮箱地址", required=False,  widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    aspect = forms.CharField(label="擅长领域", max_length=128, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+
+class UserForm(forms.Form):
+    username = forms.CharField(label="用户名", max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(label="密　码", max_length=256, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+
+class RegisterForm(forms.Form):
+    gender = (
+        ('男', "男"),
+        ('女', "女"),
+    )
+    username = forms.CharField(label="用户名　", max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password1 = forms.CharField(label="密　码　", max_length=256, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password2 = forms.CharField(label="确认密码", max_length=256, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(label="邮箱地址", widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    sex = forms.ChoiceField(label='性　别　', choices=gender)
+
+
+class PlanForm(forms.Form):
+    username = forms.CharField(label="用户名　", max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    plan1 = forms.CharField(label="计划1", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    plan2 = forms.CharField(label="计划2", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    plan3 = forms.CharField(label="计划3", max_length=256, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+
+class PlandoneForm(forms.Form):
+    percent = (
+        ('0', '未开始'),
+        ('25%', '完成了1/4'),
+        ('50%', '完成了一半'),
+        ('75%', '完成了3/4'),
+        ('100%', '全部完成'),
+    )
+    username = forms.CharField(label="用户名　", required=False, max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    plan1_progress = forms.ChoiceField(label="计划1执行进度",required=False, choices=percent)
+    plan1_learning_log = forms.CharField(label="计划1学习日志", max_length=1024, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))
+    plan2_progress = forms.ChoiceField(label="计划2执行进度", required=False, choices=percent)
+    plan2_learning_log = forms.CharField(label="计划2学习日志", max_length=1024, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))
+    plan3_progress = forms.ChoiceField(label="计划3执行进度", required=False, choices=percent)
+    plan3_learning_log = forms.CharField(label="计划3学习日志", max_length=1024, required=False, widget=forms.TextInput(attrs={'class': 'form-controla'}))
 
 
 class JobnewsForm(forms.Form):

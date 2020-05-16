@@ -59,9 +59,8 @@ class Selfinfo(models.Model):
     educations = (
         ('中专及以下', '中专及以下'),
         ('大专', '大专'),
-        #('undergratuate', '本科'),
         ('本科', '本科'),
-        ('硕士','硕士'),
+        ('硕士', '硕士'),
         ('博士及以上', '博士及以上'),
     )
     ages = (
@@ -135,38 +134,6 @@ class Selfinfo(models.Model):
     def __str__(self):
         return self.name
 
-class Plan(models.Model):
-    name = models.CharField(max_length=50,default=0, unique=True, blank=True)
-    plan1 = models.CharField(max_length=256, default='专家尚未制定，请耐心等待', blank=True)
-    plan2 = models.CharField(max_length=256, default='专家尚未制定，请耐心等待', blank=True)
-    plan3 = models.CharField(max_length=256, default='专家尚未制定，请耐心等待', blank=True)
-    expert = models.CharField(max_length=128, default='未分配', blank=True)
-
-    def __str__(self):
-        return self.name
-
-
-class Plandone(models.Model):
-    percent = (
-        ('0', '未开始'),
-        ('25%', '完成了1/4'),
-        ('50%', '完成了一半'),
-        ('75%', '完成了3/4'),
-        ('100%', '全部完成'),
-    )
-
-    name = models.CharField(max_length=50, default=0, unique=True, blank=True)
-    plan1_progress = models.CharField(max_length=50, choices=percent, default='未开始', blank=True)
-    plan1_learning_log = models.CharField(max_length=1024, default='暂无记录', blank=True)
-    plan2_progress = models.CharField(max_length=50, choices=percent, default='未开始', blank=True)
-    plan2_learning_log = models.CharField(max_length=1024, default='暂无记录', blank=True)
-    plan3_progress = models.CharField(max_length=50, choices=percent, default='未开始', blank=True)
-    plan3_learning_log = models.CharField(max_length=1024, default='暂无记录', blank=True)
-    expert = models.CharField(max_length=128, default='未分配', blank=True)
-
-    def __str__(self):
-        return self.name
-
 
 class Job(models.Model):
     job_salary = (
@@ -205,7 +172,6 @@ class Job(models.Model):
     educations = (
         ('中专及以下', '中专及以下'),
         ('大专', '大专'),
-        # ('undergratuate', '本科'),
         ('本科', '本科'),
         ('硕士', '硕士'),
         ('博士及以上', '博士及以上'),
@@ -232,3 +198,34 @@ class Job(models.Model):
         return self.job_name
 
 
+class Plan(models.Model):
+    name = models.CharField(max_length=50,default=0, unique=True, blank=True)
+    plan1 = models.CharField(max_length=256, default='专家尚未制定，请耐心等待', blank=True)
+    plan2 = models.CharField(max_length=256, default='专家尚未制定，请耐心等待', blank=True)
+    plan3 = models.CharField(max_length=256, default='专家尚未制定，请耐心等待', blank=True)
+    expert = models.CharField(max_length=128, default='未分配', blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Plandone(models.Model):
+    percent = (
+        ('0', '未开始'),
+        ('25%', '完成了1/4'),
+        ('50%', '完成了一半'),
+        ('75%', '完成了3/4'),
+        ('100%', '全部完成'),
+    )
+
+    name = models.CharField(max_length=50, default=0, unique=True, blank=True)
+    plan1_progress = models.CharField(max_length=50, choices=percent, default='未开始', blank=True)
+    plan1_learning_log = models.CharField(max_length=1024, default='暂无记录', blank=True)
+    plan2_progress = models.CharField(max_length=50, choices=percent, default='未开始', blank=True)
+    plan2_learning_log = models.CharField(max_length=1024, default='暂无记录', blank=True)
+    plan3_progress = models.CharField(max_length=50, choices=percent, default='未开始', blank=True)
+    plan3_learning_log = models.CharField(max_length=1024, default='暂无记录', blank=True)
+    expert = models.CharField(max_length=128, default='未分配', blank=True)
+
+    def __str__(self):
+        return self.name
