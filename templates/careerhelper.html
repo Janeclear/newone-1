@@ -22,21 +22,24 @@
                                             <!-- 左对齐 -->
                                             {% for job_form in re_jobs %}
                                                 <div style="margin: 20px 10%" class="yihang">
+
+                                                    <h3 class="media-heading" style="color: #555555">
+                                                        {{job_form.job_name}}
+                                                    </h3>
                                                     <div class="media-left">
                                                         <img src="/static/images/0001.jpg"
                                                              height="100"
                                                              width="100" class="media-object"
                                                              alt="img"/>
                                                     </div>
-                                                    <h4 class="media-heading">
-                                                        {{job_form.job_name}}
-                                                    </h4>
                                                     <p>职业描述</p>
                                                     <p>{{ job_form.description }}</p>
                                                     任职资格
                                                     <p>{{job_form.requirement}}</p>
                                                     <p>薪资待遇：{{ job_form.salary }}</p>
-                                                    <p>性格要求：{{job_form.character}}</p>
+                                                    <p>适配专业：{{ job_form.major1 }}/{{ job_form.major2 }}/{{ job_form.major3 }}</p>
+                                                    <p>适配职业兴趣类型：{{ job_form.hobby1 }}/{{ job_form.hobby2 }}/{{ job_form.hobby3 }}</p>
+                                                    <p>适配性格类型：{{job_form.personality1}}/{{ job_form.personality2 }}/{{ job_form.personality3 }}</p>
                                                     <!--<p><a class="btn" href="#">详情 »</a></p>-->
                                                 </div>
                                             {% endfor %}
