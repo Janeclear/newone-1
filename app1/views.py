@@ -569,7 +569,7 @@ def add_expert(request):
 
 
 def jobinfo(request):
-    job_formlist = models.Job.objects.all()
+    job_formlist = models.Job.objects.all().order_by('-job_score')
     data = {
         "job_formlist": job_formlist
     }
